@@ -1,15 +1,17 @@
 # Elisas Strange Case - Processing sketch 
 
 
-By f.lüscher / fluescher.ch 2023 for Next Level Escape AG.
+By f.Lüscher / fluescher.ch 2023 for Next Level Escape AG.
+
 "AS IS" pi pa po etc.
 
-Main file.
-Run this with processing.org/download on mac/win/linux/raspberry pi.
-When not on raspberry pi with GPIO pins and 4 connected rotary encoders,
-  set GPIO_AVAILABLE to false and DEBUG to true.
-press 0-6 or arrow keys to change stages.
-esc to leave.
+Run this with [processing](http://processing.org/download) or standalone when compiled on mac/win/linux/raspberry pi.
+
+When not on Raspberry Pi with GPIO pins and 4 connected rotary encoders,
+  set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`.
+
+Press number keys 0-6 or arrow keys to change stages.
+`esc` to leave.
 
 ## STAGES
 ```
@@ -24,12 +26,12 @@ esc to leave.
 ```
 
 ## UDP
-- messages `sync_stage0`, `sync_stage1` etc are awaited to jump to a specific stage (0...6).
+- messages `sync_stage0`, `sync_stage1` etc are awaited to jump to a specific stage (`0`...`6`).
 - this script sends the message `sync_success` when both curves where properly aligned by the player
 - this script sends the message `sync_end_of_thoughts` after the last thought of elisa
 
 ## LUCKY NUMBERS
-Amplitude  433
-Frequency  224
-Scale      36
-De-noise   416
+- Amplitude  433
+- Frequency  224
+- Scale      36
+- De-noise   416

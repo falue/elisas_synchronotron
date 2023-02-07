@@ -28,7 +28,7 @@ esc to leave.
 - this script sends the message `sync_success` when both curves where properly aligned by the player
 - this script sends the message `sync_end_of_thoughts` after the last thought of elisa
 
-## LUCKY NUMBERS
+## LUCKY NUMBERS
 Amplitude  433
 Frequency  224
 Scale      36

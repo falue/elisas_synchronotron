@@ -1,7 +1,7 @@
 void keyPressed() {
   if(PLAYTESTING) return;
   if (key != CODED) {
-    println(key);
+    // println(key);
     switch(key) {
         case('0'): stage = 0; break;  // Blackout
         case('1'): stage = 1; break;  // "Await input"
@@ -16,7 +16,7 @@ void keyPressed() {
         //case('3'):myKnobA.shuffle();myKnobB.shuffle();break;
     }
   } else {
-    println(keyCode);
+    // println(keyCode);
     switch(keyCode) {
         case(39): nextStage(); break;
         case(37): prevStage(); break;

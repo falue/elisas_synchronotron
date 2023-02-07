@@ -10,7 +10,7 @@ void scrollText(String[] data, int interval, int accuracy, int x, int y, int w, 
     }
 
     for (int i = 0; i < scrollIndex+1; i++) {
-        // TODO: deletes text after out of bounds
+        // Deletes text after out of bounds
         if(i < data.length) {
             // When text is longer than screen, correct for scrolling.
             int corr = scrollIndex * lineHeight > h ? (scrollIndex+1-(h/lineHeight))*lineHeight : 0;
@@ -21,7 +21,7 @@ void scrollText(String[] data, int interval, int accuracy, int x, int y, int w, 
             }
         }
         // Cursor at the end
-        if(i == data.length-1 && cursor) {
+        if(cursor && i == scrollIndex && i < data.length) {
             if (millis() % 1000 <= 500) {
                 fill(mainFontColor, 100);
                 noStroke();
@@ -30,20 +30,24 @@ void scrollText(String[] data, int interval, int accuracy, int x, int y, int w, 
         }
     }
 
+    // Set timestamp for next text
     if (nextText < millis() && scrollIndex < data.length-1) {
-        println("next line " + scrollIndex);
         float accuracyMargin = interval*(accuracy/100);
         nextText = millis()+int(random(interval-accuracyMargin, interval+accuracyMargin));
         scrollIndex++;
     }
-
+    
+    // End reached & action for stage 2
     if(stage == 2 && scrollIndex == data.length-1) {
         nextStage();
         println("booted_up");
     }
+    
+    // End reached & action for stage 6
     if(stage == 6 && scrollIndex == data.length-1 && !fin) {
         println("FIN");
-        // TODO: sends this when first monitor reaches end of text
+        // TODO FIXME:
+        // sends this already when first monitor reaches end of text
         udp.send("sync_end_of_thoughts", ip, port );
         fin = true;
     }

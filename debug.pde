@@ -69,6 +69,7 @@ void debugSetup() {
 void debug() {
     textAlign(RIGHT);
     textSize(33); 
+    fill(mainFontColor);
     text("Stage "+stage, width-150, 65);
     textSize(fontSize);
 

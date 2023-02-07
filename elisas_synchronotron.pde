@@ -87,9 +87,6 @@ int mainFontColorInitial = mainFontColor;  // used after invertig foreground & b
 int fontSize = 16;                         // pixel
 int lineHeight = int(fontSize*1.4);
 int lineWeight = 2;
-// general colors
-int black = color(0,0,0);  // TODO never used? 
-int transparent = color(0,0,0,0);  // TODO never used? 
 
 
 //// FROM HERE: DONT TOUCH -----------------------
@@ -147,7 +144,6 @@ void draw() {
 
   if(stage == 2) {
     // Startup sequence
-      // TODO: interval must be fixed ms, not by chance
     scrollText(boot, 180, 350, 25,25, width/2-50, wHeight-50, false);
     scrollText(boot, 180, 350, width/2+25,25, width/2-50, wHeight-50, false);
   }
@@ -262,7 +258,6 @@ void nextStage() {
 
   if(stage+1 == 3 || stage+1 == 6) {
     // Reset values when entering brainalizer territorium or leaving "success" page
-    // TODO check if works. does not need when prevStage???
     amplitude = amplitudeReset;
     frequency = frequencyReset;
     scale = scaleReset;

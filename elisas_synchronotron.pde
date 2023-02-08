@@ -1,10 +1,9 @@
 /*
   Elisas Strange Case - Processing sketch 
- =====================================================
+  =====================================================
 
-
-By f.lüscher / fluescher.ch 2023 for Next Level Escape AG.
-"AS IS" pi pa po etc.
+  By f.lüscher / fluescher.ch 2023 for Next Level Escape AG.
+  "AS IS" pi pa po etc.
 
   Main file.
   Run this with processing.org/download on mac/win/linux/raspberry pi.
@@ -24,15 +23,8 @@ By f.lüscher / fluescher.ch 2023 for Next Level Escape AG.
   6:  Elisas thoughts as sequence in DE & EN                  ..waits for dungeon master / udp signal
 
   UDP
-  - messages "sync_stage0", "sync_stage1" etc are awaited to jump to a specific stage (0...6).
-  - this script sends the message "sync_success" when both curves where properly aligned by the player
-  - this script sends the message "sync_end_of_thoughts" after the last thought of elisa
+  Refer to the README.md file to see messages that are sent and being received.
 
-  LUCKY NUMBERS
-  Amplitude  433
-  Frequency  224
-  Scale      36
-  De-noise   416
 */
 
 import java.util.Arrays;
@@ -97,6 +89,7 @@ int stage = 0;                // keeps track of stages
 int maxStage = 6;
 
 // CLUTCHES
+boolean startUpLoaded = false;
 // TODO glitcheffect
 // boolean hasTakenScreenshot = false;
 
@@ -236,6 +229,10 @@ void draw() {
     // Elisas thoughts sequence
     scrollText(thoughtsDe, 2000, 0, 25,25, width/2-50, wHeight-50, true);
     scrollText(thoughtsEn, 2000, 0, width/2+25,25, width/2-50, wHeight-50, true);
+  }
+
+  if(!startUpLoaded) {
+    preloadAllStages(6.2);
   }
 
   // Display Pop ups longer than triggered

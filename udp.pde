@@ -33,5 +33,12 @@
    else if(Arrays.equals(data, "sync_stage4".getBytes())) { goToStage(4); }  // Curves with user
    else if(Arrays.equals(data, "sync_stage5".getBytes())) { goToStage(5); }  // Success!
    else if(Arrays.equals(data, "sync_stage6".getBytes())) { goToStage(6); }  // Elisas thoughts
+   else if(Arrays.equals(data, "sync_skipLoading".getBytes())) {             // Abort loading if stuck
+     println("Aborted Loading by dungeon master");
+     startUpLoaded = true;
+     goToStage(0);
+     udp.send("sync_ready", ip, port);  // TODO mention in .md
+     // sync_skipLoading also TODO mention in .md
+    }
    else { println("Message was not for me :("); }
  }

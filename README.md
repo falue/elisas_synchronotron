@@ -26,9 +26,14 @@ Press number keys 0-6 or arrow keys to change stages.
 ```
 
 ## UDP
-- messages `sync_stage0`, `sync_stage1` etc are awaited to jump to a specific stage (`0`...`6`).
-- this script sends the message `sync_success` when both curves where properly aligned by the player
-- this script sends the message `sync_end_of_thoughts` after the last thought of elisa
+**Messages to control this script:**
+- `sync_stage0`, `sync_stage1` etc: Jump to a specific stage (`0`...`6`).
+- `sync_skipLoading` can be used to skip the initial loading process if it takes forever. (Stage `3`+`4` will not be as fast at first)
+
+**Messages sent by this script:**
+- `sync_ready` is sent when initially "loaded" stage `3`+`4`
+- `sync_success` is sent when both curves where properly aligned by the player
+- `sync_end_of_thoughts` is sent after the last thought of elisa
 
 ## LUCKY NUMBERS
 - Amplitude  433

@@ -108,3 +108,32 @@ void popUp(String text, int timeOut) {
 void popUp(String text, int x, int timeOut) {
   popUp(text, x, wHeight/2, timeOut);
 }
+
+void preloadAllStages(float desiredFrameRate) {
+  popUp("LOADING UNTIL FRAMERATE > "+desiredFrameRate, width/4, 0);
+  popUp("🯁🯂🯃 "+round(frameRate, 2)+"fps", width/4*3, 0);
+  // popUp("🯁🯂🯃 "+round(frameRate, 2)+"fps ("+round(frameRate*100/desiredFrameRate, 0)+"%)", width/4*3, 0);
+  if(stage == 0) {
+    goToStage(3);
+  } else if(stage == 3) {
+    // wait for frame rate to recover
+    if(frameRate < desiredFrameRate) {
+      println("wait for framerate to be bigger than "+desiredFrameRate+": " + frameRate);  // twiddle dee
+    } else {
+      println("Loaded stage 3");
+      goToStage(4);
+    }
+  } else if(stage == 4) {
+    // wait for frame rate to recover
+    if(frameRate < desiredFrameRate) {
+      println("wait for framerate to be bigger than "+desiredFrameRate+": " + frameRate);  // twiddle dee
+    } else {
+      println("Loaded stage 4");
+      goToStage(0);
+      popUp("Loaded and ready to rumble.", width/4, 6000);
+      popUp("Loaded and ready to rumble.", width/4*3, 6000);
+      startUpLoaded = true;
+      udp.send("sync_ready", ip, port);
+    }
+  }
+}

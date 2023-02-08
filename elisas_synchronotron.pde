@@ -116,7 +116,8 @@ void setup() {
   PFont font;
   // The font must be located in the sketch's 
   // "data" directory to load successfully
-  font = createFont("3270SemiCondensed-Regular.otf", fontSize);
+  // font = createFont("3270SemiCondensed-Regular.otf", fontSize);
+  font = createFont("ONESIZE_.TTF", fontSize);
   textFont(font);
 
   if(DEBUG) debugSetup();

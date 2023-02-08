@@ -99,7 +99,7 @@ void setup() {
   size(640*2,480*2);  // 2xVGA
   // fullScreen();
 
-  cursorImg = loadImage("cursor.png");
+  cursorImg = loadImage("cursor.gif");
 
   udpSetup();
   if(GPIO_AVAILABLE) gpioSetup();
@@ -123,7 +123,7 @@ void draw() {
     debug();
   } else {
     cursor(cursorImg);  // Set to transparent png
-    noCursor();      // doesn't work at all
+    noCursor();         // Doesn't work at all on MAC
   }
   if(GPIO_AVAILABLE) gpioRead();
 

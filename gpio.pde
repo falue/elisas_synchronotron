@@ -1,166 +1,145 @@
-import processing.io.*;
-// int btnPin = 2;
-// int btnLEDPin = 3;
-
-// int potentiometerPin = 4;  // not yet used....
-
-/* int rotaryPinA = 26;
-int rotaryPinB = 19;
-// int rotaryBtnPin = 13;
-long rotaryValue = 0;
-
-// long lastRotaryValue = 0;
-int lastEncoded = 0; */
 /* 
-int[][] rotaryEncoders = {
-  // {pinA, pinB, value, lastEncoded},
-  {26, 19, amplitude, amplitude},  // amplitude, physical pin #37+35
-  {13, 6, frequency, frequency},   // frequency, physical pin #33+31
-  {5, 11, scale, scale},           // scale,     physical pin #29+23
-  {9, 10, noise, noise}            // de-noise,  physical pin #21+19
-};
- */
-int value0 = amplitude;
-int lastEncoded0 = amplitude;
-int value1 = frequency;
-int lastEncoded1 = frequency;
-int value2 = scale;
-int lastEncoded2 = scale;
-int value3 = noise;
-int lastEncoded3 = noise;
+Terminating interrupt handling for pin X after catching: null
+absturz:irgendwas mit PFFont getname()
+cannot use "curveVertex()" bevore "beginShape()" in waves.pde
+absturz: Nullpointerexception mit verweis zu zeile 77 (ein rect() mit nur globals?????) in helpers.pde
+  */
+import processing.io.*;
+// amplitude
+int pin_0a = 26;  
+int pin_0b = 19;
+
+// frequency
+int pin_1a = 13;  
+int pin_1b = 6;
+
+// scale
+int pin_2a = 5;   // Maybe reversed on those products
+int pin_2b = 11;  // Maybe reversed on those products
+
+// noise
+int pin_3a = 9;   // Maybe reversed on those products
+int pin_3b = 10;  // Maybe reversed on those products
+
+
+// amplitude
+// long value0 = amplitude;
+int lastEncoded0 = 0;
+
+// frequency
+// long value1 = frequency;
+int lastEncoded1 = 0;
+
+// scale
+// long value2 = scale;
+int lastEncoded2 = 0;
+
+// noise
+// long value3 = noise;
+int lastEncoded3 = 0;
+
 
 void gpioSetup() {
-  // ROTARY ENCODER SETUP
-  // DEFINE PINOUTS
-  GPIO.pinMode(26, GPIO.INPUT_PULLUP);
-  GPIO.pinMode(19, GPIO.INPUT_PULLUP);
-  // DEFINE INTERRUPTS
-  GPIO.attachInterrupt(26, this, "chooseEncoder0", GPIO.CHANGE);
-  GPIO.attachInterrupt(19, this, "chooseEncoder0", GPIO.CHANGE);
-  // DEFINE PINOUTS
-  GPIO.pinMode(13, GPIO.INPUT_PULLUP);
-  GPIO.pinMode(6, GPIO.INPUT_PULLUP);
-  // DEFINE INTERRUPTS
-  GPIO.attachInterrupt(13, this, "chooseEncoder1", GPIO.CHANGE);
-  GPIO.attachInterrupt(6, this, "chooseEncoder1", GPIO.CHANGE);
-  // DEFINE PINOUTS
-  GPIO.pinMode(5, GPIO.INPUT_PULLUP);
-  GPIO.pinMode(11, GPIO.INPUT_PULLUP);
-  // DEFINE INTERRUPTS
-  GPIO.attachInterrupt(5, this, "chooseEncoder2", GPIO.CHANGE);
-  GPIO.attachInterrupt(11, this, "chooseEncoder2", GPIO.CHANGE);
-  // DEFINE PINOUTS
-  GPIO.pinMode(9, GPIO.INPUT_PULLUP);
-  GPIO.pinMode(10, GPIO.INPUT_PULLUP);
-  // DEFINE INTERRUPTS
-  GPIO.attachInterrupt(9, this, "chooseEncoder3", GPIO.CHANGE);
-  GPIO.attachInterrupt(10, this, "chooseEncoder3", GPIO.CHANGE);
-}
+  // amplitude
+  GPIO.pinMode(pin_0a, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.pinMode(pin_0b, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.attachInterrupt(pin_0a, this, "updateEncoder0", GPIO.CHANGE);
+	GPIO.attachInterrupt(pin_0b, this, "updateEncoder0", GPIO.CHANGE);
 
+	// frequency
+  GPIO.pinMode(pin_1a, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.pinMode(pin_1b, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.attachInterrupt(pin_1a, this, "updateEncoder1", GPIO.CHANGE);
+	GPIO.attachInterrupt(pin_1b, this, "updateEncoder1", GPIO.CHANGE);
+
+	// scale
+  GPIO.pinMode(pin_2a, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.pinMode(pin_2b, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.attachInterrupt(pin_2a, this, "updateEncoder2", GPIO.CHANGE);
+	GPIO.attachInterrupt(pin_2b, this, "updateEncoder2", GPIO.CHANGE);
+
+	// noise
+  GPIO.pinMode(pin_3a, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.pinMode(pin_3b, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.attachInterrupt(pin_3a, this, "updateEncoder3", GPIO.CHANGE);
+	GPIO.attachInterrupt(pin_3b, this, "updateEncoder3", GPIO.CHANGE);
+}
 
 void gpioRead() {
-  /* if(rotaryValue != lastRotaryValue) {
-    println("Rotary value: " + rotaryValue);
-    lastRotaryValue = rotaryValue;
-  }
-  
-  if(GPIO.digitalRead(btnPin) == GPIO.LOW) {
-   //btn is pressed
-   fill(255,182,0);
-   println("btn pressed");
-   GPIO.digitalWrite(btnLEDPin, GPIO.HIGH);
-  } else {
-   // btn is not pressed
-   fill(30,30,30);
-   GPIO.digitalWrite(btnLEDPin, GPIO.LOW);
-  }
-  ellipse(width/2, wHeight/2, 75, 75);
-  
-  if(GPIO.digitalRead(rotaryBtnPin) == GPIO.LOW) {
-   //btn is pressed
-   println("rotary btn pressed");
-  } else {
-   // btn is not pressed
-  } */
-}
-
-// Not very elegant. cannot deliver parameters to function
-void chooseEncoder0(int pin) {  // int pin from attach interrupt function. i dont care.
-  updateEncoder(0, 26, 19, value0, lastEncoded0);
-}
-
-void chooseEncoder1(int pin) {  // int pin from attach interrupt function. i dont care.
-  updateEncoder(1, 13, 6, value1, lastEncoded1);
-}
-
-void chooseEncoder2(int pin) {  // int pin from attach interrupt function. i dont care.
-  updateEncoder(2, 5, 11, value2, lastEncoded2);
-}
-
-void chooseEncoder3(int pin) {  // int pin from attach interrupt function. i dont care.
-  updateEncoder(3, 9, 10, value3, lastEncoded3);
+  // this is in draw();
 }
 
 
-void updateEncoder(int index, int pinA, int pinB, int value, int lastEncoded) {
-  int MSB = GPIO.digitalRead(pinA);
-  int LSB = GPIO.digitalRead(pinB);
-
-  int encoded = (MSB << 1) | LSB;
-  int sum = (lastEncoded << 2) | encoded;
-
-  int temp = 0;
-
-  if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
-    temp = value++;
-  }
-  if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
-    temp = value--;
-  }
-
-  if(index == 0) { value0 = temp; }
-  else if(index == 1) { value1 = temp; }
-  else if(index == 2) { value2 = temp; }
-  else if(index == 3) { value3 = temp; }
-
-  if(index == 0) { lastEncoded0 = encoded; }
-  else if(index == 1) { lastEncoded1 = encoded; }
-  else if(index == 2) { lastEncoded2 = encoded; }
-  else if(index == 3) { lastEncoded3 = encoded; }
-
-  routeValue(index, temp);
-  //println(value); //DEBUG
+// amplitude
+void updateEncoder0(int pin) {
+  GPIO.noInterrupts();
+	int MSB = GPIO.digitalRead(pin_0a);
+	int LSB = GPIO.digitalRead(pin_0b);
+	int encoded = (MSB << 1) | LSB;
+	int sum = (lastEncoded0 << 2) | encoded;
+	if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
+		amplitude++;
+	}
+	if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
+		amplitude--;
+	}
+	lastEncoded0 = encoded;
+	amplitudeKnob(amplitude); // DEBUG
+  GPIO.interrupts();
 }
 
-/// TODO: Generalize for 4+ rotary encoders
-/* 
-void updateEncoder(int pin) {
-  int MSB = GPIO.digitalRead(rotaryPinA);
-  int LSB = GPIO.digitalRead(rotaryPinB);
+// frequency
+void updateEncoder1(int pin) {
+  GPIO.noInterrupts();
+	int MSB = GPIO.digitalRead(pin_1a);
+	int LSB = GPIO.digitalRead(pin_1b);
+	int encoded = (MSB << 1) | LSB;
+	int sum = (lastEncoded1 << 2) | encoded;
+	if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
+		frequency++;
+	}
+	if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
+		frequency--;
+	}
+	lastEncoded1 = encoded;
+	frequencyKnob(frequency); // DEBUG
+  GPIO.interrupts();
+}
 
-  int encoded = (MSB << 1) | LSB;
-  int sum = (lastEncoded << 2) | encoded;
+// scale
+void updateEncoder2(int pin) {
+  GPIO.noInterrupts();
+	int MSB = GPIO.digitalRead(pin_2a);
+	int LSB = GPIO.digitalRead(pin_2b);
+	int encoded = (MSB << 1) | LSB;
+	int sum = (lastEncoded2 << 2) | encoded;
+	if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
+		scale++;
+	}
+	if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
+		scale--;
+	}
+	lastEncoded2 = encoded;
+	scaleKnob(scale); // DEBUG
+  GPIO.interrupts();
+}
 
-  if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
-    rotaryValue++;
-  }
-  if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
-    rotaryValue--;
-  }
-
-  lastEncoded = encoded;
-  // TODO SOMETHING LIKE THAT
-  amplitudeKnob(encoded);
-  //println(rotaryValue); //DEBUG
-} */
-
-void routeValue(int index, int value) {
-  switch(index) {
-    case('0'): amplitudeKnob(value); break;
-    case('1'): frequencyKnob(value); break;
-    case('2'): scaleKnob(value); break;
-    case('3'): noiseKnob(value); break;
-  }
+// noise
+void updateEncoder3(int pin) {
+  GPIO.noInterrupts();
+	int MSB = GPIO.digitalRead(pin_3a);
+	int LSB = GPIO.digitalRead(pin_3b);
+	int encoded = (MSB << 1) | LSB;
+	int sum = (lastEncoded3 << 2) | encoded;
+	if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
+		noise++;
+	}
+	if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
+		noise--;
+	}
+	lastEncoded3 = encoded;
+	noiseKnob(noise); // DEBUG
+  GPIO.interrupts();
 }
 
 

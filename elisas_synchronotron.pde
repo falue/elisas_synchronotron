@@ -150,6 +150,26 @@ void draw() {
     scrollText(boot, 180, 350, width/2+25,25, width/2-50, wHeight-50, false);
   }
 
+  if(stage == 4 || stage == 5) {
+    // Kappe auf
+    if(DEBUG) centerText("XXXXX USER]", wHeight/2, width/2+100,width);
+    //   data, x, y, w, h, scale, amp, freq, noise, thightness
+    drawCurve(curve, width/2+25,75, width/2-50, wHeight-100, scale, amplitude, frequency, noise);
+    
+    if( stage == 4 &&
+        isAboutEqual(amplitude, 100, ampTolerance) &&
+        isAboutEqual(frequency, 100, freqTolerance) &&
+        isAboutEqual(noise, 0, noiseTolerance) &&
+        isAboutEqual(scale, 36, scaleTolerance)
+      ) {
+      // Ascend
+      nextStage();
+      
+      // Send the good message to the controlino
+      udp.send("sync_success", ip, port );
+    }
+  }
+
   if(stage == 3 || stage == 4 || stage == 5) {
     if(DEBUG) centerText("[GRID ELISA]", wHeight/2, 0,width/2);
     if(DEBUG) centerText("[GRID EMPTY]", wHeight/2, width/2,width);
@@ -182,29 +202,6 @@ void draw() {
       screenshot[1] = ghostingCopy(width/2+25,75, width/2-50, wHeight-100);
     } */
   }
-
-
-  if(stage == 4 || stage == 5) {
-    // Kappe auf
-    if(DEBUG) centerText("XXXXX USER]", wHeight/2, width/2+100,width);
-    //   data, x, y, w, h, scale, amp, freq, noise, thightness
-    drawCurve(curve, width/2+25,75, width/2-50, wHeight-100, scale, amplitude, frequency, noise);
-    
-    if( stage == 4 &&
-        isAboutEqual(amplitude, 100, ampTolerance) &&
-        isAboutEqual(frequency, 100, freqTolerance) &&
-        isAboutEqual(noise, 0, noiseTolerance) &&
-        isAboutEqual(scale, 36, scaleTolerance)
-      ) {
-      // Ascend
-      nextStage();
-      
-      // Send the good message to the controlino
-      udp.send("sync_success", ip, port );
-
-    }
-  }
-
 
   if(stage == 5) {
     // SUCCESS

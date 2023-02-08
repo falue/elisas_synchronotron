@@ -106,7 +106,7 @@ void debugTail() {
     textAlign(RIGHT);
     textSize(fontSize*2); 
     fill(mainFontColor);
-    text("Stage "+stage, width-150, 65);
+    text("STAGE_"+stage, width-150, 65);
     textSize(fontSize);
 
     text(round(frameRate, 2)+"fps", width-150, 35);

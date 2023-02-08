@@ -49,9 +49,6 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
 
     ////////// TODO: Optimize, optimize, optimize! /////////////
     for (int i = 0; i < data.length && (i-2)*scale*(freq/100.0) <= w-20; i++) {
-        // Test: without alll the noise correction, playable on raspi?
-        // simplify elisas curve & null curve.
-        // On raspi, framrate tank.
         if(frameRate > 5) {
             // Do not completely eradicate jitter
 

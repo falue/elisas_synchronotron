@@ -45,14 +45,15 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
     beginShape();
     float noiseCorr = 0;
     float perlinNoise = 0;
+    noise = noise < 5 && noise > -5 ? 5 : noise;
+
     ////////// TODO: Optimize, optimize, optimize! /////////////
     for (int i = 0; i < data.length && (i-2)*scale*(freq/100.0) <= w-20; i++) {
         // Test: without alll the noise correction, playable on raspi?
         // simplify elisas curve & null curve.
         // On raspi, framrate tank.
-        if(frameRate > 5) {  //  && noise > 6
+        if(frameRate > 5) {
             // Do not completely eradicate jitter
-            noise = noise < 5 && noise > -5 ? 5 : noise;
 
             // Calculate jitter based on de-noise knob
             perlinNoiseCoordY = perlinNoiseCoordY + map(noise, 10, 420, 0.001, .1);

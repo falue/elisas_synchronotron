@@ -104,7 +104,7 @@ void debug() {
 
 void debugTail() {
     textAlign(RIGHT);
-    textSize(33); 
+    textSize(fontSize*2); 
     fill(mainFontColor);
     text("Stage "+stage, width-150, 65);
     textSize(fontSize);

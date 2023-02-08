@@ -84,7 +84,7 @@ int mainBg = color(0,0,0);                 // RGB values
 int mainFontColor = color(255,182,0);      // RGB values
 int mainBgInitial = mainBg;                // used after invertig foreground & background. leave alone.
 int mainFontColorInitial = mainFontColor;  // used after invertig foreground & background. leave alone.
-int fontSize = 16;                         // pixel
+int fontSize = 12;                         // pixel
 int lineHeight = int(fontSize*1.4);
 int lineWeight = 2;
 
@@ -104,8 +104,8 @@ PImage cursorImg;
 
 
 void setup() {
-  size(640*2,480*2);  // 2xVGA
-  // fullScreen();
+  // size(640*2,480*2);  // 2xVGA
+  fullScreen();
 
   cursorImg = loadImage("cursor.gif");
 
@@ -249,7 +249,7 @@ void draw() {
   }
 
   if(!startUpLoaded) {
-    preloadAllStages(6.2);
+    preloadAllStages(10);
   }
 
   debugTail();

@@ -44,14 +44,37 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
 
     beginShape();
     float noiseCorr = 0;
+    float perlinNoise = 0;
+    ////////// TODO: Optimize, optimize, optimize! /////////////
     for (int i = 0; i < data.length && (i-2)*scale*(freq/100.0) <= w-20; i++) {
-        perlinNoiseCoordY = perlinNoiseCoordY + map(noise, 10, 420, 0.001, .1);  /// 0.01
-        noiseCorr = noise(perlinNoiseCoordY, perlinNoiseCoordY)*noise;
-        // add random spikes sometimes
-        if(i % 2 == 0) noiseCorr *= -1;
-        if(random(0, 450-noise) <= 6 ) noiseCorr *= -random(0,16);
-        // TODO: this does not "scale" in Y
-        curveVertex(x+20+(i-1)*scale*(freq/100.0),  map(data[i]*(amp/100.0)-int(noiseCorr), 0,1024, y+h-20, y));
+        // Test: without alll the noise correction, playable on raspi?
+        // simplify elisas curve & null curve.
+        // On raspi, framrate tank.
+        if(frameRate > 5) {  //  && noise > 6
+            // Do not completely eradicate jitter
+            noise = noise < 5 && noise > -5 ? 5 : noise;
+
+            // Calculate jitter based on de-noise knob
+            perlinNoiseCoordY = perlinNoiseCoordY + map(noise, 10, 420, 0.001, .1);
+            perlinNoise = noise(perlinNoiseCoordY, perlinNoiseCoordY);
+            noiseCorr = perlinNoise*noise;
+
+            // Some random spikes are more spikey
+            if(i % Math.round(perlinNoise*12+1) == 0) {
+                noiseCorr *= noiseCorr;
+            }
+
+            // Invert every other spike to not move the complete wave in +Y or -Y.
+            //   It evens out the displacement, and basically doubles the noise effect. Noice!
+            if(i % 2 == 0) noiseCorr *= -1;
+
+            // Increase noise now and again - cannot see a difference
+            /* if(perlinNoise < 0.2) {
+                noiseCorr *= noiseCorr/4;
+            } */
+        }
+        // TODO: this "scale" in Y doesfuck some shit up
+        curveVertex(x+20+(i-1)*scale*(freq/100.0),  map(data[i]*scale*(amp/100.0)-int(noiseCorr), 0,1024, y+h-20, y));
     }
     endShape();
 

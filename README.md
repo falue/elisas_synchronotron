@@ -36,7 +36,7 @@ Press number keys 0-6 or arrow keys to change stages.
 - `sync_end_of_thoughts` is sent after the last thought of elisa
 
 ## LUCKY NUMBERS
-- Amplitude  433
+- Amplitude  337
 - Frequency  224
 - Scale      36
 - De-noise   416

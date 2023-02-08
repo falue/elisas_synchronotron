@@ -22,7 +22,7 @@
   5:  Message "SUCCESS"                                       ..waits for dungeon master / udp signal
   6:  Elisas thoughts as sequence in DE & EN                  ..waits for dungeon master / udp signal
 
-  UDP
+  UDP & WINNING NUMBERS
   Refer to the README.md file to see messages that are sent and being received.
 
 */
@@ -44,20 +44,28 @@ int port = 8888;                 // The destination port
 int portIncoming = 6000;         // Port to listen to for incoming messages
 
 // GAME MECHANICS
-// Initial ("wrong") values
-int amplitude = 150;
+// Initial "wrong" values
+// Note, to adjust these numbers, enable DEBUG
+//   and enter the numbers on the dials, not the one in the orange dialog box.
+int amplitude = 25;
 int frequency = 170;
 int scale = 9; 
 int noise = 290;
 // Min/Max values
-int ampMin = 70;
-int ampMax = 200;
-int freqMin = 85;
-int freqMax = 600;
-int scaleMin = 9;
-int scaleMax = 180;
+int ampMin = 0;
+int ampMax = 50;
+int freqMin = 65;
+int freqMax = 333;
+int scaleMin = 4;
+int scaleMax = 75;
 int noiseMin = -420;
 int noiseMax = 420;
+// Winning numbers on dials (also, initial adjustments for elisas curves)
+int ampWin = 4;     // In GUI: 337
+int freqWin = 120;  // In GUI: 224
+int scaleWin = 36;  // In GUI: 36
+int noiseWin = 0;   // In GUI: 416
+
 // Tolerance +/- of user input to accomplish total brain synchronicity
 //   the higher, the easier is it to win.
 int ampTolerance = 18;
@@ -126,6 +134,7 @@ void draw() {
     cursor(cursorImg);  // Set to transparent png
     noCursor();         // Doesn't work at all on MAC
   }
+  
   if(GPIO_AVAILABLE) gpioRead();
 
   if(stage == 0) {
@@ -157,11 +166,12 @@ void draw() {
     drawCurve(curve, width/2+25,75, width/2-50, wHeight-100, scale, amplitude, frequency, noise);
     
     if( stage == 4 &&
-        isAboutEqual(amplitude, 100, ampTolerance) &&
-        isAboutEqual(frequency, 100, freqTolerance) &&
-        isAboutEqual(noise, 0, noiseTolerance) &&
-        isAboutEqual(scale, 36, scaleTolerance)
-      ) {
+      isAboutEqual(amplitude, ampWin, ampTolerance) &&
+      isAboutEqual(frequency, freqWin, freqTolerance) &&
+      isAboutEqual(noise, noiseWin, noiseTolerance) &&
+      isAboutEqual(scale, scaleWin, scaleTolerance)
+    ) {
+      // Player has synced brains properly
       // Ascend
       nextStage();
       
@@ -179,9 +189,10 @@ void draw() {
       ghostingPaste(screenshot[1], width/2+25,75, width/2-50, wHeight-100);
     } */
 
-    // Elisas curve already there
-    //   data, x, y, w, h, scale, amp, freq, noise, thightness
-    drawCurve(curve, 25,75, width/2-50, wHeight-100, 36, 100, 100, 25);
+    // Elisas curve
+    //   data, x, y, w, h, scale, amp, freq, noise
+    drawCurve(curve, 25,75, width/2-50, wHeight-100, 36, 4, 120, 25);
+
     if(stage == 3) {
       // display "disconnected" data with low noise
       drawCurve(nullCurve, width/2+25,75, width/2-50, wHeight-100, scale, amplitude, frequency, noise/20);

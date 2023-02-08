@@ -67,15 +67,6 @@ void debugSetup() {
 
 // in draw()
 void debug() {
-    textAlign(RIGHT);
-    textSize(33); 
-    fill(mainFontColor);
-    text("Stage "+stage, width-150, 65);
-    textSize(fontSize);
-
-    text(round(frameRate, 2)+"fps", width-150, 35);
-    textAlign(LEFT);
-   
     stroke(mainFontColor);
     line(width/2,0, width/2,wHeight);  // vertical monitor separator
 
@@ -109,6 +100,17 @@ void debug() {
     nextBtn.setVisible(!PLAYTESTING || (PLAYTESTING && (stage == 0 || stage == 1 || stage == 5 || stage == 6)));  //  0,1,5,6
     prevBtn.setVisible(!PLAYTESTING || (PLAYTESTING && (stage == 1 || stage == 2 || stage == 3 || stage == 5 || stage == 6))); // 1,2,3,5,6
      */
+}
+
+void debugTail() {
+    textAlign(RIGHT);
+    textSize(33); 
+    fill(mainFontColor);
+    text("Stage "+stage, width-150, 65);
+    textSize(fontSize);
+
+    text(round(frameRate, 2)+"fps", width-150, 35);
+    textAlign(LEFT);
 }
 
 // Looking for the functions of the dials? check the gpio.pde file

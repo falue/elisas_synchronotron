@@ -252,6 +252,8 @@ void draw() {
     preloadAllStages(6.2);
   }
 
+  debugTail();
+
   // Display Pop ups longer than triggered
   popUpAfterglow();
 }

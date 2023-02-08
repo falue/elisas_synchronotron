@@ -3,14 +3,14 @@ void keyPressed() {
   if (key != CODED) {
     // println(key);
     switch(key) {
-        case('0'): stage = 0; break;  // Blackout
-        case('1'): stage = 1; break;  // "Await input"
-        case('2'): stage = 2; break;  // "startup"
-        case('3'): stage = 3; break;  // Curves without user
-        case('4'): stage = 4; break;  // Curves with user
-        case('5'): stage = 5; break;  // Success!
-        case('6'): stage = 6; break;  // Elisas thoughts
-        default: stage = 0; break;
+        case('0'): startUpLoaded = true; goToStage(0); break;  // Blackout
+        case('1'): startUpLoaded = true; goToStage(1); break;  // "Await input"
+        case('2'): startUpLoaded = true; goToStage(2); break;  // "startup"
+        case('3'): startUpLoaded = true; goToStage(3); break;  // Curves without user
+        case('4'): startUpLoaded = true; goToStage(4); break;  // Curves with user
+        case('5'): startUpLoaded = true; goToStage(5); break;  // Success!
+        case('6'): startUpLoaded = true; goToStage(6); break;  // Elisas thoughts
+        default: startUpLoaded = true; goToStage(0); break;
         //case('1'):myKnobA.setValue(180);break;
         //case('2'):myKnobB.setConstrained(false).hideTickMarks().snapToTickMarks(false);break;
         //case('3'):myKnobA.shuffle();myKnobB.shuffle();break;
@@ -18,8 +18,8 @@ void keyPressed() {
   } else {
     // println(keyCode);
     switch(keyCode) {
-        case(39): nextStage(); break;
-        case(37): prevStage(); break;
+        case(39): startUpLoaded = true; nextStage(); break;
+        case(37): startUpLoaded = true; prevStage(); break;
     }
   }
 }

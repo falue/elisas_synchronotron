@@ -134,7 +134,7 @@ void draw() {
     cursor(cursorImg);  // Set to transparent png
     noCursor();         // Doesn't work at all on MAC
   }
-  
+
   if(GPIO_AVAILABLE) gpioRead();
 
   if(stage == 0) {

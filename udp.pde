@@ -26,19 +26,49 @@
    // Have to use byte-wise comparison of byte array "data"
    //   because "message" and a comparable string is somehow not the same
 
-   if(Arrays.equals(data, "sync_stage0".getBytes())) { goToStage(0); }       // Blackout
-   else if(Arrays.equals(data, "sync_stage1".getBytes())) { goToStage(1); }  // "Await input"
-   else if(Arrays.equals(data, "sync_stage2".getBytes())) { goToStage(2); }  // "startup"
-   else if(Arrays.equals(data, "sync_stage3".getBytes())) { goToStage(3); }  // Curves without user
-   else if(Arrays.equals(data, "sync_stage4".getBytes())) { goToStage(4); }  // Curves with user
-   else if(Arrays.equals(data, "sync_stage5".getBytes())) { goToStage(5); }  // Success!
-   else if(Arrays.equals(data, "sync_stage6".getBytes())) { goToStage(6); }  // Elisas thoughts
-   else if(Arrays.equals(data, "sync_skipLoading".getBytes())) {             // Abort loading if stuck
+  if(Arrays.equals(data, "sync_stage0".getBytes())) {
+    // Blackout
+    startUpLoaded = true;
+    goToStage(0);
+  
+  } else if(Arrays.equals(data, "sync_stage1".getBytes())) {
+    // "Await input"
+    startUpLoaded = true;
+    goToStage(1);
+  
+  } else if(Arrays.equals(data, "sync_stage2".getBytes())) {
+    // "startup"
+    startUpLoaded = true;
+    goToStage(2);
+  
+  } else if(Arrays.equals(data, "sync_stage3".getBytes())) {
+    // Curves without user
+    startUpLoaded = true;
+    goToStage(3);
+  
+  } else if(Arrays.equals(data, "sync_stage4".getBytes())) {
+    // Curves with user
+    startUpLoaded = true;
+    goToStage(4);
+  
+  } else if(Arrays.equals(data, "sync_stage5".getBytes())) {
+    // Success!
+    startUpLoaded = true;
+    goToStage(5);
+  
+  } else if(Arrays.equals(data, "sync_stage6".getBytes())) {
+    // Elisas thoughts
+    startUpLoaded = true;
+    goToStage(6);
+  
+  } else if(Arrays.equals(data, "sync_skipLoading".getBytes())) {
+    // Abort loading if stuck
      println("Aborted Loading by dungeon master");
      startUpLoaded = true;
      goToStage(0);
      udp.send("sync_ready", ip, port);  // TODO mention in .md
      // sync_skipLoading also TODO mention in .md
-    }
-   else { println("Message was not for me :("); }
+  } else {
+    println("Message was not for me :(");
+  }
  }

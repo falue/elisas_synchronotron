@@ -70,7 +70,7 @@ int noiseWin = 0;   // In GUI: 416
 int ampTolerance = 18;
 int freqTolerance = 18;
 int scaleTolerance = 10;
-int noiseTolerance = 22;
+int noiseTolerance = 50;
 
 // For resetting stage - dont touch 
 int amplitudeReset = amplitude;

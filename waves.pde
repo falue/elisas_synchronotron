@@ -42,11 +42,12 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
     float thightness = map(noise, -420, 420, -1.0, 1.0);
     curveTightness(thightness < 0 ? thightness*-1 : thightness);
 
-    beginShape();
     float noiseCorr = 0;
     float perlinNoise = 0;
     noise = noise < 5 && noise > -5 ? 5 : noise;
-
+    
+    GPIO.noInterrupts();  // which might be a bad idea
+    beginShape();
     ////////// TODO: Optimize, optimize, optimize! /////////////
     for (int i = 0; i < data.length && (i-2)*scale*(freq/100.0) <= w-20; i++) {
         if(frameRate > 5) {
@@ -75,6 +76,7 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
         curveVertex(x+20+(i-1)*scale*(freq/100.0),  map(data[i]*scale*(amp/100.0)-int(noiseCorr), 0,1024, y+h-20, y));
     }
     endShape();
+    GPIO.interrupts();
 
     //Cover up overshooting curve top and bottom
     fill(mainBg);

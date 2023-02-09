@@ -67,32 +67,38 @@ void gpioSetup() {
 
 void gpioRead() {
   // this is in draw();
+  // println("amplitude: "+amplitude+"\t\tfrequency: "+frequency+"\t\tscale: "+scale+"\t\tnoise: "+noise+"\t\t");
+
   GPIO.noInterrupts();
   if(lastEncoded0 != 0) {
     amplitudeKnob(amplitude + value0);
-    lastEncoded0 = 0;
+    value0 = 0;
+	lastEncoded0 = 0;
   }
 
   if(lastEncoded1 != 0) {
     frequencyKnob(frequency + value1);
-    lastEncoded1 = 0;
+    value1 = 0;
+	lastEncoded1 = 0;
   }
 
   if(lastEncoded2 != 0) {
     scaleKnob(scale + value2);
-    lastEncoded2 = 0;
+    value2 = 0;
+	lastEncoded2 = 0;
   }
 
   if(lastEncoded3 != 0) {
-    noiseKnob(noise + value3);
-    lastEncoded3 = 0;
+    noiseKnob(noise + value3*8);  // *8 for faster turning
+    value3 = 0;
+	lastEncoded3 = 0;
   }
   GPIO.interrupts();
 }
 
 
 // amplitude
-void updateEncoder0(int pin) {  // int pin) {
+void updateEncoder0(int pin) {
   	GPIO.noInterrupts();
 	int MSB = GPIO.digitalRead(pin_0a);
 	int LSB = GPIO.digitalRead(pin_0b);
@@ -105,12 +111,11 @@ void updateEncoder0(int pin) {  // int pin) {
 		value0--;
 	}
 	lastEncoded0 = encoded;
-	println("value0: "+value0);
   	GPIO.interrupts();
 }
 
 // frequency
-void updateEncoder1(int pin) {  // int pin) {
+void updateEncoder1(int pin) {
   	GPIO.noInterrupts();
 	int MSB = GPIO.digitalRead(pin_1a);
 	int LSB = GPIO.digitalRead(pin_1b);
@@ -123,12 +128,11 @@ void updateEncoder1(int pin) {  // int pin) {
 		value1--;
 	}
 	lastEncoded1 = encoded;
-	println("value1: "+value1);
   	GPIO.interrupts();
 }
 
 // scale
-void updateEncoder2(int pin) {  // int pin) {
+void updateEncoder2(int pin) {
   	GPIO.noInterrupts();
 	int MSB = GPIO.digitalRead(pin_2a);
 	int LSB = GPIO.digitalRead(pin_2b);
@@ -141,12 +145,11 @@ void updateEncoder2(int pin) {  // int pin) {
 		value2--;
 	}
 	lastEncoded2 = encoded;
-	println("value2: "+value2);
   	GPIO.interrupts();
 }
 
 // noise
-void updateEncoder3(int pin) {  // int pin) {
+void updateEncoder3(int pin) {
   	GPIO.noInterrupts();
 	int MSB = GPIO.digitalRead(pin_3a);
 	int LSB = GPIO.digitalRead(pin_3b);
@@ -159,7 +162,6 @@ void updateEncoder3(int pin) {  // int pin) {
 		value3--;
 	}
 	lastEncoded3 = encoded;
-	println("value3: "+value3);
   	GPIO.interrupts();
 }
 
@@ -169,7 +171,7 @@ void amplitudeKnob(int value) {
   value = clamp(value, ampMin, ampMax);
   if(stage == 3 || stage == 4) {
       amplitude = value;
-      println("Setting amplitude to "+value);
+      // println("Setting amplitude to "+value);
       popUp("AMPLITUDE: "+(value+333), width/4*3, 1250);  // skew printout to not have boring numbers as solution
   }
 }
@@ -177,7 +179,7 @@ void frequencyKnob(int value) {
   value = clamp(value, freqMin, freqMax);
   if(stage == 3 || stage == 4) {
       frequency = value;
-      println("Setting frequency to "+value);
+      // println("Setting frequency to "+value);
       popUp("FREQUENCY: "+(value+124), width/4*3, 1250);  // skew printout to not have boring numbers as solution
   }
 }
@@ -186,7 +188,7 @@ void scaleKnob(int value) {
   if(stage == 3 || stage == 4) {
       // scale = width/value;
       scale = value;
-      println(scale);
+      // println(scale);
       popUp("SCALE: "+value, width/4*3, 1250);
   }
 }
@@ -194,7 +196,7 @@ void noiseKnob(int value) {
   value = clamp(value, noiseMin, noiseMax);
   if(stage == 3 || stage == 4) {
       noise = value;
-      println(value);
+      // println(value);
       popUp("DE-NOISE: "+(value+416), width/4*3, 1250);  // skew printout to not have boring numbers as solution
   }
 }

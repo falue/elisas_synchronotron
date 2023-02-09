@@ -135,7 +135,7 @@ void draw() {
 
   if(DEBUG) {
     debug();
-    if(startUpLoaded) udp.send("sync_ready", ip, port);
+    if(!startUpLoaded) udp.send("sync_ready", ip, port);
     startUpLoaded = true;  // Do not preload for debugging
   } else {
     cursor(cursorImg);  // Set to transparent png

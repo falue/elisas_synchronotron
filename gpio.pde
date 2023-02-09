@@ -23,43 +23,43 @@ int pin_3b = 10;  // Maybe reversed on those products
 
 
 // amplitude
-// long value0 = amplitude;
+int value0 = 0;
 int lastEncoded0 = 0;
 
 // frequency
-// long value1 = frequency;
+int value1 = 0;
 int lastEncoded1 = 0;
 
 // scale
-// long value2 = scale;
+int value2 = 0;
 int lastEncoded2 = 0;
 
 // noise
-// long value3 = noise;
+int value3 = 0;
 int lastEncoded3 = 0;
 
 
 void gpioSetup() {
-  // amplitude
-  GPIO.pinMode(pin_0a, GPIO.INPUT_PULLUP);  // !PULLUP!
+	// amplitude
+	GPIO.pinMode(pin_0a, GPIO.INPUT_PULLUP);  // !PULLUP!
 	GPIO.pinMode(pin_0b, GPIO.INPUT_PULLUP);  // !PULLUP!
 	GPIO.attachInterrupt(pin_0a, this, "updateEncoder0", GPIO.CHANGE);
 	GPIO.attachInterrupt(pin_0b, this, "updateEncoder0", GPIO.CHANGE);
 
 	// frequency
-  GPIO.pinMode(pin_1a, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.pinMode(pin_1a, GPIO.INPUT_PULLUP);  // !PULLUP!
 	GPIO.pinMode(pin_1b, GPIO.INPUT_PULLUP);  // !PULLUP!
 	GPIO.attachInterrupt(pin_1a, this, "updateEncoder1", GPIO.CHANGE);
 	GPIO.attachInterrupt(pin_1b, this, "updateEncoder1", GPIO.CHANGE);
 
 	// scale
-  GPIO.pinMode(pin_2a, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.pinMode(pin_2a, GPIO.INPUT_PULLUP);  // !PULLUP!
 	GPIO.pinMode(pin_2b, GPIO.INPUT_PULLUP);  // !PULLUP!
 	GPIO.attachInterrupt(pin_2a, this, "updateEncoder2", GPIO.CHANGE);
 	GPIO.attachInterrupt(pin_2b, this, "updateEncoder2", GPIO.CHANGE);
 
 	// noise
-  GPIO.pinMode(pin_3a, GPIO.INPUT_PULLUP);  // !PULLUP!
+	GPIO.pinMode(pin_3a, GPIO.INPUT_PULLUP);  // !PULLUP!
 	GPIO.pinMode(pin_3b, GPIO.INPUT_PULLUP);  // !PULLUP!
 	GPIO.attachInterrupt(pin_3a, this, "updateEncoder3", GPIO.CHANGE);
 	GPIO.attachInterrupt(pin_3b, this, "updateEncoder3", GPIO.CHANGE);
@@ -67,79 +67,100 @@ void gpioSetup() {
 
 void gpioRead() {
   // this is in draw();
+  GPIO.noInterrupts();
+  if(lastEncoded0 != 0) {
+    amplitudeKnob(amplitude + value0);
+    lastEncoded0 = 0;
+  }
+
+  if(lastEncoded1 != 0) {
+    frequencyKnob(frequency + value1);
+    lastEncoded1 = 0;
+  }
+
+  if(lastEncoded2 != 0) {
+    scaleKnob(scale + value2);
+    lastEncoded2 = 0;
+  }
+
+  if(lastEncoded3 != 0) {
+    noiseKnob(noise + value3);
+    lastEncoded3 = 0;
+  }
+  GPIO.interrupts();
 }
 
 
 // amplitude
-void updateEncoder0(int pin) {
-  GPIO.noInterrupts();
+void updateEncoder0(int pin) {  // int pin) {
+  	GPIO.noInterrupts();
 	int MSB = GPIO.digitalRead(pin_0a);
 	int LSB = GPIO.digitalRead(pin_0b);
 	int encoded = (MSB << 1) | LSB;
 	int sum = (lastEncoded0 << 2) | encoded;
 	if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
-		amplitude++;
+		value0++;
 	}
 	if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
-		amplitude--;
+		value0--;
 	}
 	lastEncoded0 = encoded;
-	amplitudeKnob(amplitude); // DEBUG
-  GPIO.interrupts();
+	println("value0: "+value0);
+  	GPIO.interrupts();
 }
 
 // frequency
-void updateEncoder1(int pin) {
-  GPIO.noInterrupts();
+void updateEncoder1(int pin) {  // int pin) {
+  	GPIO.noInterrupts();
 	int MSB = GPIO.digitalRead(pin_1a);
 	int LSB = GPIO.digitalRead(pin_1b);
 	int encoded = (MSB << 1) | LSB;
 	int sum = (lastEncoded1 << 2) | encoded;
 	if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
-		frequency++;
+		value1++;
 	}
 	if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
-		frequency--;
+		value1--;
 	}
 	lastEncoded1 = encoded;
-	frequencyKnob(frequency); // DEBUG
-  GPIO.interrupts();
+	println("value1: "+value1);
+  	GPIO.interrupts();
 }
 
 // scale
-void updateEncoder2(int pin) {
-  GPIO.noInterrupts();
+void updateEncoder2(int pin) {  // int pin) {
+  	GPIO.noInterrupts();
 	int MSB = GPIO.digitalRead(pin_2a);
 	int LSB = GPIO.digitalRead(pin_2b);
 	int encoded = (MSB << 1) | LSB;
 	int sum = (lastEncoded2 << 2) | encoded;
 	if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
-		scale++;
+		value2++;
 	}
 	if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
-		scale--;
+		value2--;
 	}
 	lastEncoded2 = encoded;
-	scaleKnob(scale); // DEBUG
-  GPIO.interrupts();
+	println("value2: "+value2);
+  	GPIO.interrupts();
 }
 
 // noise
-void updateEncoder3(int pin) {
-  GPIO.noInterrupts();
+void updateEncoder3(int pin) {  // int pin) {
+  	GPIO.noInterrupts();
 	int MSB = GPIO.digitalRead(pin_3a);
 	int LSB = GPIO.digitalRead(pin_3b);
 	int encoded = (MSB << 1) | LSB;
 	int sum = (lastEncoded3 << 2) | encoded;
 	if (sum == unbinary("1101") || sum == unbinary("0100") || sum == unbinary("0010") || sum == unbinary("1011")) {
-		noise++;
+		value3++;
 	}
 	if (sum == unbinary("1110") || sum == unbinary("0111") || sum == unbinary("0001") || sum == unbinary("1000")) { 
-		noise--;
+		value3--;
 	}
 	lastEncoded3 = encoded;
-	noiseKnob(noise); // DEBUG
-  GPIO.interrupts();
+	println("value3: "+value3);
+  	GPIO.interrupts();
 }
 
 

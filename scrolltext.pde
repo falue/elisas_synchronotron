@@ -3,11 +3,11 @@ long nextText = 0;
 boolean fin = false;
 
 void scrollText(String[] data, int interval, int accuracy, int x, int y, int w, int h, boolean cursor) {
-    if(DEBUG) {
+    /* if(DEBUG) {
         stroke(mainFontColor);
         fill(0,0,0,0);
         rect(x,y, w,h);
-    }
+    } */
 
     for (int i = 0; i < scrollIndex+1; i++) {
         // Deletes text after out of bounds

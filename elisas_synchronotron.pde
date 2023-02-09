@@ -185,8 +185,8 @@ void draw() {
   }
 
   if(stage == 3 || stage == 4 || stage == 5) {
-    if(DEBUG) centerText("[GRID ELISA]", wHeight/2, 0,width/2);
-    if(DEBUG) centerText("[GRID EMPTY]", wHeight/2, width/2,width);
+    if(DEBUG) centerText("[SCREEN ELISA]", wHeight/2, 0,width/2);
+    if(DEBUG) centerText("[SCREEN EMPTY]", wHeight/2, width/2,width);
 
     /* if (millis() % 1000 <= 50 && hasTakenScreenshot) {
       ghostingPaste(screenshot[0], 25,75, width/2-50, wHeight-100);

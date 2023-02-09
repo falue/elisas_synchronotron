@@ -1,5 +1,4 @@
 void keyPressed() {
-  if(PLAYTESTING) return;
   if (key != CODED) {
     // println(key);
     switch(key) {

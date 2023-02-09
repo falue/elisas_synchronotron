@@ -34,8 +34,6 @@ import java.util.Arrays;
 boolean GPIO_AVAILABLE = false;  // True for raspberry pi or computers with GPIOs
 boolean DEBUG = true;           // Display infos and dials to play without GPIO
 boolean CROSSHAIR = false;       // To calibrate monitors; displays frames and centerlines etc
-boolean PLAYTESTING = false;     // TODO: if true, hide crosshair/frames but keep all the buttons.
-                                 //   TODO: also, auto-increment stages where appropriate.
 boolean AUTOSCALE = false;       // If preloading takes ages or never finishes, turn this on.
                                  //   It rescales the viewing window until a framerate of 10 is matched.
 

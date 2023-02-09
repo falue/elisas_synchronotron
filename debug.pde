@@ -92,14 +92,6 @@ void debug() {
         rect(width/4-50,wHeight/2-50, 100,100);
         rect(width/4*3-50,wHeight/2-50, 100,100);
     }
-
-    // Display button to "connect" & next/prev stage cable when testing
-    // brainalizerBtn.setVisible(PLAYTESTING && stage == 3);
-    /* 
-    brainalizerBtn.unlock();
-    nextBtn.setVisible(!PLAYTESTING || (PLAYTESTING && (stage == 0 || stage == 1 || stage == 5 || stage == 6)));  //  0,1,5,6
-    prevBtn.setVisible(!PLAYTESTING || (PLAYTESTING && (stage == 1 || stage == 2 || stage == 3 || stage == 5 || stage == 6))); // 1,2,3,5,6
-     */
 }
 
 void debugTail() {

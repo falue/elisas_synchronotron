@@ -66,8 +66,7 @@
      println("Aborted Loading by dungeon master");
      startUpLoaded = true;
      goToStage(0);
-     udp.send("sync_ready", ip, port);  // TODO mention in .md
-     // sync_skipLoading also TODO mention in .md
+     udp.send("sync_ready", ip, port);
   } else {
     println("Message was not for me :(");
   }

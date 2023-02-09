@@ -48,7 +48,7 @@ int portIncoming = 6000;         // Port to listen to for incoming messages
 //   and enter the numbers on the dials, not the one in the orange dialog box.
 int amplitude = 25;
 int frequency = 170;
-int scale = 9; 
+int scale = 9;   // TODO: Scale for physical screen. maybe: 18,152,8,0?
 int noise = 290;
 // Min/Max values
 int ampMin = 0;
@@ -62,7 +62,7 @@ int noiseMax = 420;
 // Winning numbers on dials (also, initial adjustments for elisas curves)
 int ampWin = 4;     // In GUI: 337
 int freqWin = 120;  // In GUI: 224
-int scaleWin = 36;  // In GUI: 36
+int scaleWin = 36;  // In GUI: 36  // TODO: Scale for physical screen. maybe: 18,152,8,0?
 int noiseWin = 0;   // In GUI: 416
 
 // Tolerance +/- of user input to accomplish total brain synchronicity
@@ -98,8 +98,6 @@ int maxStage = 6;
 // CLUTCHES
 boolean startUpLoaded = false;
 PImage cursorImg;
-// TODO glitcheffect
-// boolean hasTakenScreenshot = false;
 
 
 void setup() {
@@ -253,6 +251,7 @@ void draw() {
 
 // Send message from the grave if closed or is mauled by death or bad programming
 private void prepareExitHandler () {
+  // TODO: Most of the time, port closes befoore this gets executed but meh
   Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
     public void run () {
       println("Program closed or died");

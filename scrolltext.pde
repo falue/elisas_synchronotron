@@ -46,8 +46,10 @@ void scrollText(String[] data, int interval, int accuracy, int x, int y, int w, 
     // End reached & action for stage 6
     if(stage == 6 && scrollIndex == data.length-1 && !fin) {
         println("FIN");
-        // TODO FIXME:
-        // sends this already when first monitor reaches end of text
+        // MAYBE TODO / FIXME:
+        //   sends this already when first text reaches end of text, not when last text is written.
+        //   maybe doesn't matter because text have equal lengths,
+        //   also, nothing is dependend on this message
         udp.send("sync_end_of_thoughts", ip, port );
         fin = true;
     }

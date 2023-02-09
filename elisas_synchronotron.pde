@@ -133,8 +133,8 @@ void draw() {
 
   if(DEBUG) {
     debug();
-    if(!startUpLoaded) udp.send("sync_ready", ip, port);
-    startUpLoaded = true;  // Do not preload for debugging
+    // if(!startUpLoaded) udp.send("sync_ready", ip, port);
+    // startUpLoaded = true;  // Do not preload for debugging
   } else {
     cursor(cursorImg);  // Set to transparent png
     noCursor();         // Doesn't work at all on MAC

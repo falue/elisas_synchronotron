@@ -46,7 +46,7 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
     float perlinNoise = 0;
     noise = noise < 5 && noise > -5 ? 5 : noise;
     
-    GPIO.noInterrupts();  // which might be a bad idea
+    GPIO.noInterrupts();
     beginShape();
     ////////// TODO: Optimize, optimize, optimize! /////////////
     for (int i = 0; i < data.length && (i-2)*scale*(freq/100.0) <= w-20; i++) {

@@ -169,7 +169,6 @@ void draw() {
   if(stage == 4 || stage == 5) {
     // Kappe auf
     if(DEBUG) centerText("XXXXX USER]", wHeight/2, width/2+100,width);
-    //   data, x, y, w, h, scale, amp, freq, noise, thightness
     drawCurve(curve, width/2+25,75, width/2-50, wHeight-100, scale, amplitude, frequency, noise);
     
     if( stage == 4 &&

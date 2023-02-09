@@ -118,6 +118,8 @@ void preloadAllStages(float desiredFrameRate) {
   } else if(stage == 3) {
     // wait for frame rate to recover
     if(frameRate < desiredFrameRate) {
+      // Last resort: resize tables to speed things up
+      if(AUTOSCALE) if(millis() % 11 == 0 && wHeight > 250) wHeight -= 1;
       println("wait for framerate to be bigger than "+desiredFrameRate+": " + frameRate);  // twiddle dee
     } else {
       println("Loaded stage 3");
@@ -126,6 +128,8 @@ void preloadAllStages(float desiredFrameRate) {
   } else if(stage == 4) {
     // wait for frame rate to recover
     if(frameRate < desiredFrameRate) {
+      if(AUTOSCALE) if(millis() % 11 == 0 && wHeight > 250) wHeight -= 1;
+      // Last resort: resize tables to speed things up
       println("wait for framerate to be bigger than "+desiredFrameRate+": " + frameRate);  // twiddle dee
     } else {
       println("Loaded stage 4");

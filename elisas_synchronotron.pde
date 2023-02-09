@@ -36,6 +36,8 @@ boolean DEBUG = true;           // Display infos and dials to play without GPIO
 boolean CROSSHAIR = false;       // To calibrate monitors; displays frames and centerlines etc
 boolean PLAYTESTING = false;     // TODO: if true, hide crosshair/frames but keep all the buttons.
                                  //   TODO: also, auto-increment stages where appropriate.
+boolean AUTOSCALE = false;       // If preloading takes ages or never finishes, turn this on.
+                                 //   It rescales the viewing window until a framerate of 10 is matched.
 
 // UDP settings
 String ip = "192.168.1.45";      // The remote IP address - your local network. Should be static.
@@ -211,7 +213,6 @@ void draw() {
     MakeShadowOfBothCurves();
     } */
     drawFakeApplicationNonsense();
-
 
     /* if (millis() % 1000 <= 50) {
       hasTakenScreenshot = true;

@@ -18,9 +18,9 @@ Press number keys 0-6 or arrow keys to change stages.
 #   Action                                                  At end of script..
 0:  Blackout                                                ..waits for dungeon master / udp signal
 1:  Message"AWAITING INPUT"                                 ..waits for dungeon master / udp signal
-2:  Startup sequence of computer                            ..auto-jumps to next stage
+2:  Startup sequence of computer                            ..auto-jumps to stage 3
 3:  Elisas curves, but without brainalizer on players head  ..waits for dungeon master / udp signal
-4:  Elisas curves, with brainalizer. Adjust dials to sync.  ..jumps to next stage when synched
+4:  Elisas curves, with brainalizer. Adjust dials to sync.  ..auto-jumps to next stage when synched
 5:  Message "SUCCESS"                                       ..waits for dungeon master / udp signal
 6:  Elisas thoughts as sequence in DE & EN                  ..waits for dungeon master / udp signal
 ```
@@ -31,9 +31,10 @@ Press number keys 0-6 or arrow keys to change stages.
 - `sync_skipLoading` can be used to skip the initial loading process if it takes forever. (Stage `3`+`4` will not be as fast at first)
 
 **Messages sent by this script:**
-- `sync_ready` is sent when initially "loaded" stage `3`+`4`
+- `sync_ready` is sent when initially "loaded" stage `3`+`4` (only on startup)
 - `sync_success` is sent when both curves where properly aligned by the player
 - `sync_end_of_thoughts` is sent after the last thought of elisa
+- `sync_died` is sent when program closed or died
 
 ## LUCKY NUMBERS
 - Amplitude  337

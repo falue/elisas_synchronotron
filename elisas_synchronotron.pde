@@ -124,6 +124,8 @@ void setup() {
   textFont(font);
 
   if(DEBUG) debugSetup();
+
+  prepareExitHandler();
 }
 
 
@@ -133,6 +135,7 @@ void draw() {
 
   if(DEBUG) {
     debug();
+    if(startUpLoaded) udp.send("sync_ready", ip, port);
     startUpLoaded = true;  // Do not preload for debugging
   } else {
     cursor(cursorImg);  // Set to transparent png
@@ -260,6 +263,16 @@ void draw() {
 
   // Display Pop ups longer than triggered
   popUpAfterglow();
+}
+
+// Send message from the grave if closed or is mauled by death or bad programming
+private void prepareExitHandler () {
+  Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+    public void run () {
+      println("Program closed or died");
+      udp.send("sync_died", ip, port);
+    }
+  }));
 }
 
 void goToStage(int index) {

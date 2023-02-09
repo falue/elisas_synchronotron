@@ -24,7 +24,6 @@
 
   UDP & WINNING NUMBERS
   Refer to the README.md file to see messages that are sent and being received.
-
 */
 
 import java.util.Arrays;
@@ -117,7 +116,11 @@ void setup() {
   // The font must be located in the sketch's 
   // "data" directory to load successfully
   // font = createFont("3270SemiCondensed-Regular.otf", fontSize);
-  font = createFont("ONESIZE_.TTF", fontSize);
+  // font = createFont("3270-Regular.otf", fontSize);        // too thin :(
+  // font = createFont("ONESIZE_.TTF", fontSize);            // mokey island - no box chars :(
+  // font = createFont("MonkeyIsland-1991", fontSize);       // mokey island, more chars (umlaute) - but doesn't work and still no box chars :(
+  // font = createFont("Flexi_IBM_VGA_True.ttf", fontSize);  // no pixelation but real IBM :(
+  font = createFont("Topaz8-xxO8.ttf", fontSize);            // maybe the one
   textFont(font);
 
   if(DEBUG) debugSetup();

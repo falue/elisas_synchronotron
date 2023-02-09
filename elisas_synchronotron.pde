@@ -198,7 +198,6 @@ void draw() {
     } */
 
     // Elisas curve
-    //   data, x, y, w, h, scale, amp, freq, noise
     drawCurve(curve, 25,75, width/2-50, wHeight-100, 36, 4, 120, 25);
 
     if(stage == 3) {

@@ -20,8 +20,9 @@ void drawGrid(int x, int y, int w, int h, int scale) {
     }
 
     // TEXT
+    textAlign(RIGHT);
+    fill(mainFontColor);
     pushMatrix();
-        textAlign(RIGHT);
         float angle2 = radians(270);
         translate(x+fontSize, y);
         rotate(angle2);

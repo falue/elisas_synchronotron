@@ -232,20 +232,7 @@ void draw() {
       mainFontColor = color(mainFontColorInitial);
     }
 
-    /* stroke(mainBg);
-    fill(mainBg);
-    rect(width/4-130,wHeight/2-lineHeight*2-5, 260,43, 5);
-    fill(mainFontColor);
-    rect(width/4-125,wHeight/2-lineHeight*2, 250,33, 5);
-    centerText("BRAIN SYNC ESTABLISHED", wHeight/2-lineHeight, 0,width/2, mainBg); */
     popUp(">BRAIN SYNC ESTABLISHED", width/4, 0);
-
-    /* stroke(mainBg);
-    fill(mainBg);
-    rect(width/4*3-130,wHeight/2-lineHeight*2-5, 260,43, 5);
-    fill(mainFontColor);
-    rect(width/4*3-125,wHeight/2-lineHeight*2, 250,33, 5);
-    centerText("BRAIN SYNC ESTABLISHED", wHeight/2-lineHeight, width/2, width, mainBg); */
     popUp(">BRAIN SYNC ESTABLISHED", width/4*3, 0);
   }
 
@@ -313,7 +300,7 @@ void prevStage() {
   mainBg = color(mainBgInitial);  // FLIP COLORS BACK
   mainFontColor = color(mainFontColorInitial);  // FLIP COLORS BACK
 
-  if(stage-1 == 3) popUp(">BRAINALIZER DISCONNECTED 🮲🮳", width/4*3, 1250);
+  if(stage-1 == 3) popUp(">BRAINALIZER DISCONNECTED", width/4*3, 1250);
 
   if(stage-1 >= 0) {
     stage--;

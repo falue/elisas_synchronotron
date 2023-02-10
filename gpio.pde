@@ -6,20 +6,20 @@ absturz: Nullpointerexception mit verweis zu zeile 77 (ein rect() mit nur global
   */
 import processing.io.*;
 // amplitude
-int pin_0a = 26;  
-int pin_0b = 19;
+int pin_0a = 19;
+int pin_0b = 26;
 
 // frequency
-int pin_1a = 13;  
-int pin_1b = 6;
+int pin_1a = 6;
+int pin_1b = 13;
 
 // scale
-int pin_2a = 5;   // Maybe reversed on those products
-int pin_2b = 11;  // Maybe reversed on those products
+int pin_2a = 11;   // Maybe reversed on those products
+int pin_2b = 5;  // Maybe reversed on those products
 
 // noise
-int pin_3a = 9;   // Maybe reversed on those products
-int pin_3b = 10;  // Maybe reversed on those products
+int pin_3a = 10;   // Maybe reversed on those products
+int pin_3b = 9;  // Maybe reversed on those products
 
 
 // amplitude

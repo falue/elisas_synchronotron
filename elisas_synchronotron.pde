@@ -24,6 +24,11 @@
 
   UDP & WINNING NUMBERS
   Refer to the README.md file to see messages that are sent and being received.
+
+  IF LIBRARIES MISSING
+    No library found for controlP5       -> in library manager look for "controlP5"
+    No library found for processing.io   -> in library manager look for "processing-io"
+    No library found for hypermedia.net  -> in library manager look for "UDP" by Stephane Cousot (!!)
 */
 
 import java.util.Arrays;

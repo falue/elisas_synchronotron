@@ -1,29 +1,27 @@
 # Elisas Strange Case - Processing sketch 
 
-
 By f.Lüscher / fluescher.ch 2023 for Next Level Escape AG.
 
 "AS IS" pi pa po etc.
 
-Run this with [processing](http://processing.org/download) or standalone when compiled on mac/win/linux/raspberry pi.
+Run this with [processing.org](http://processing.org/download) or standalone when compiled on mac/win/linux/raspberry pi.
 
 When not on Raspberry Pi with GPIO pins and 4 connected rotary encoders,
-  set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`.
+set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`.
 
-Press number keys 0-6 or arrow keys to change stages.
-`esc` to leave.
+Press number keys `0`-`6` or left/right `arrow keys` to change stages.
+`ESC` to leave.
 
 ## STAGES
-```
-#   Action                                                  At end of script..
-0:  Blackout                                                ..waits for dungeon master / udp signal
-1:  Message"AWAITING INPUT"                                 ..waits for dungeon master / udp signal
-2:  Startup sequence of computer                            ..auto-jumps to stage 3
-3:  Elisas curves, but without brainalizer on players head  ..waits for dungeon master / udp signal
-4:  Elisas curves, with brainalizer. Adjust dials to sync.  ..auto-jumps to next stage when synched
-5:  Message "SUCCESS"                                       ..waits for dungeon master / udp signal
-6:  Elisas thoughts as sequence in DE & EN                  ..waits for dungeon master / udp signal
-```
+| Stage#| Action                                                  | At end of script..      |
+|:-----:|---------------------------------------------------------|-------------------------|
+| **0** | Blackout                                                | ..waits for UDP signal  |
+| **1** | Message"AWAITING INPUT"                                 | ..waits for UDP signal  |
+| **2** | Startup sequence of computer                            | ..*auto-jumps* to stage **3** |
+| **3** | Elisas curves, without connected brainalizer on players head | ..waits for UDP signal  |
+| **4** | Elisas curves, with connected brainalizer. Adjust with dials to sync brainwaves.  | ..*auto-jumps* to next stage when synched |
+| **5** | Message "SUCCESS"                                       | ..waits for UDP signal  |
+| **6** | Elisas thoughts as sequence in DE & EN                  | ..waits for UDP signal  |
 
 ## UDP
 **Messages to control this script:**
@@ -35,6 +33,15 @@ Press number keys 0-6 or arrow keys to change stages.
 - `sync_success` is sent when both curves where properly aligned by the player
 - `sync_end_of_thoughts` is sent after the last thought of elisa
 - `sync_died` is sent when program closed or died
+
+## Exit application & see desktop
+Press `ESC`.
+
+## Adjustments
+If adjustments to the scripts are needed, open the file `/home/esc/Applications/sketchbook/elisas_synchronotron/elisas_synchronotron.pde` with processing.
+Or double click the file `processing.sh` on the desktop and click "file > open recent.. > elisas_synchronotron".
+Press the **play** button on the GUI to preview the changes. `ESC` to exit. Save and quit.
+Double click the file `startSketch.sh` on the desktop to verify changes.
 
 ## LUCKY NUMBERS
 - Amplitude  337

@@ -1,22 +1,23 @@
 float perlinNoiseCoordY = 0.0;
 PImage[] screenshot;
+int scaleMargin = int(fontSize*1.75);
 
 void drawGrid(int x, int y, int w, int h, int scale) {
     // MAIN LINES   
     stroke(mainFontColor);
-    line(x,y+h-20, x+w,y+h-20);  // horz
-    line(x+20,y, x+20,y+h);  // vert
+    line(x,y+h-scaleMargin, x+w,y+h-scaleMargin);  // horz
+    line(x+scaleMargin,y, x+scaleMargin,y+h);  // vert
 
     // subgrid horz
     stroke(mainFontColor, 100);
-    for (int i = 0; i < h-20; i+=scale) {
+    for (int i = 0; i < h-scaleMargin; i+=scale) {
         // scale*(amplitude/100)
-        line(x+20,y+h-20-i, x+w,y+h-20-i);
+        line(x+scaleMargin,y+h-scaleMargin-i, x+w,y+h-scaleMargin-i);
     }
     // subgrid vert
-    for (int i = 0; i < w-20; i+=scale) {
+    for (int i = 0; i < w-scaleMargin; i+=scale) {
         // scale*(frequency/100)
-        line(x+20+i,y, x+20+i,y+h-20);
+        line(x+scaleMargin+i,y, x+scaleMargin+i,y+h-scaleMargin);
     }
 
     // TEXT
@@ -32,7 +33,7 @@ void drawGrid(int x, int y, int w, int h, int scale) {
     text("FREQUENCY", x+w, y+h);
     textAlign(LEFT);
     text("0", x, y+h);
-    centerText("Scale "+scale+":1", y+h, x+20, x+w);
+    centerText("Scale "+scale+":1", y+h, x+scaleMargin, x+w);
 };
 
 void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int freq, int noise) {
@@ -49,7 +50,7 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
     
     GPIO.noInterrupts();
     beginShape();
-    for (int i = 0; i < data.length && (i-2)*scale*(freq/100.0) <= w-20; i++) {
+    for (int i = 0; i < data.length && (i-2)*scale*(freq/100.0) <= w-scaleMargin; i++) {
         if(frameRate > 5) {
             // Do not completely eradicate jitter
 
@@ -72,7 +73,7 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
                 noiseCorr *= noiseCorr/4;
             } */
         }
-        curveVertex(x+20+(i-1)*scale*(freq/100.0),  map(data[i]*scale*(amp/100.0)-int(noiseCorr), 0,1024, y+h-20, y));
+        curveVertex(x+scaleMargin+(i-1)*scale*(freq/100.0),  map(data[i]*scale*(amp/100.0)-int(noiseCorr), 0,1024, y+h-scaleMargin, y));
     }
     endShape();
     GPIO.interrupts();
@@ -80,8 +81,8 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
     //Cover up overshooting curve top and bottom
     fill(mainBg);
     noStroke();
-    rect(x+21, y+h-20, w-20, wHeight);
-    rect(x+21, 0, w-20, y);
+    rect(x+21, y+h-scaleMargin, w-scaleMargin, wHeight);
+    rect(x+21, 0, w-scaleMargin, y);
 
     strokeWeight(lineWeight);
 };
@@ -90,7 +91,7 @@ PImage ghostingCopy(int x, int y, int w, int h) {
     return get(x, y, w, h);
 }
 void ghostingPaste(PImage img, int x, int y, int w, int h) {
-    image(img, x+20, y-20);
+    image(img, x+scaleMargin, y-scaleMargin);
 }
 
 void drawFakeApplicationNonsense() {

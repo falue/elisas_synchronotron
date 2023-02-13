@@ -89,7 +89,7 @@ int mainBg = color(0,0,0);                 // RGB values
 int mainFontColor = color(255,182,0);      // RGB values
 int mainBgInitial = mainBg;                // used after invertig foreground & background. leave alone.
 int mainFontColorInitial = mainFontColor;  // used after invertig foreground & background. leave alone.
-int fontSize = 12;                         // pixel
+int fontSize = wHeight/40;                         // pixel 12
 int lineHeight = int(fontSize*1.4);
 int lineWeight = 2;
 
@@ -126,7 +126,10 @@ void setup() {
   font = createFont("Topaz8-xxO8.ttf", fontSize);            // maybe the one
   textFont(font);
 
-  if(DEBUG) debugSetup();
+  if(DEBUG) {
+    debugSetup();
+    wHeight = height;
+  }
 
   prepareExitHandler();
 }

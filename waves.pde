@@ -40,7 +40,7 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
     strokeWeight(lineWeight*2);  // Thicc
     noFill();
     // curveTightness(0);  // 0 ultra smooth, 1 no smoothing
-    float thightness = map(noise, -420, 420, -1.0, 1.0);
+    float thightness = map(noise, noiseMin, noiseMax, -1.0, 1.0);
     curveTightness(thightness < 0 ? thightness*-1 : thightness);
 
     float noiseCorr = 0;
@@ -54,7 +54,7 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
             // Do not completely eradicate jitter
 
             // Calculate jitter based on de-noise knob
-            perlinNoiseCoordY = perlinNoiseCoordY + map(noise, 10, 420, 0.001, .1);
+            perlinNoiseCoordY = perlinNoiseCoordY + map(noise, 10, noiseMax, 0.001, .1);
             perlinNoise = noise(perlinNoiseCoordY, perlinNoiseCoordY);
             noiseCorr = perlinNoise*noise;
 

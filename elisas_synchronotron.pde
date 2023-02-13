@@ -84,6 +84,7 @@ int scaleReset = scale;
 int noiseReset = noise;
 
 // STYLES
+int wHeight = 450;                         // windowed content in frame to trick the 2x2 video wall converter
 int mainBg = color(0,0,0);                 // RGB values
 int mainFontColor = color(255,182,0);      // RGB values
 int mainBgInitial = mainBg;                // used after invertig foreground & background. leave alone.
@@ -96,7 +97,6 @@ int lineWeight = 2;
 //// FROM HERE: DONT TOUCH -----------------------
 
 // GENERAL
-int wHeight = 480;            // windowed content in frame to trick the 2x2 video wall converter
 int stage = 0;                // keeps track of stages
 int maxStage = 6;
 
@@ -106,8 +106,8 @@ PImage cursorImg;
 
 
 void setup() {
-  // size(640*2,480*2);  // 2xVGA
-  fullScreen();
+  size(550,450);  // 2xVGA
+  // fullScreen();
 
   cursorImg = loadImage("cursor.gif");
 

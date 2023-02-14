@@ -109,6 +109,9 @@ void setup() {
   // size(550,450);  // 2xVGA
   fullScreen();
 
+  // Temp
+  wHeight = height;
+
   cursorImg = loadImage("cursor.gif");
 
   udpSetup();

@@ -1,3 +1,5 @@
+String version = "1.0";
+
 String[] boot = {
     "00512 KB OK_",
     "RXN SYNCHRONOTRON link version 1.08",

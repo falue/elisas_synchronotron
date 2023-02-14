@@ -134,6 +134,8 @@ void setup() {
     wHeight = height;
   }
 
+  popUp("Installed version: "+version, width/4, 8*lineHeight, 6000);
+
   prepareExitHandler();
 }
 

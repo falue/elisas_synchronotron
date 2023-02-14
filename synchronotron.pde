@@ -110,7 +110,7 @@ void setup() {
   fullScreen();
 
   // Temp
-  wHeight = height/200;
+  wHeight = height/2;
 
   cursorImg = loadImage("cursor.gif");
 

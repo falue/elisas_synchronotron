@@ -106,8 +106,8 @@ PImage cursorImg;
 
 
 void setup() {
-  size(550,450);  // 2xVGA
-  // fullScreen();
+  // size(550,450);  // 2xVGA
+  fullScreen();
 
   cursorImg = loadImage("cursor.gif");
 

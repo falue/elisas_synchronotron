@@ -176,7 +176,7 @@ void draw() {
   if(stage == 4 || stage == 5) {
     // Kappe auf
     if(DEBUG) centerText("XXXXX USER]", wHeight/2, width/2+100,width);
-    drawCurve(curve, width/2+25,75, width/2-50, wHeight-100, scale, amplitude, frequency, noise);
+    drawCurve(curve, width/2+25,lineHeight*2, width/2-50, wHeight-lineHeight*4, scale, amplitude, frequency, noise);
     
     if( stage == 4 &&
       isAboutEqual(amplitude, ampWin, ampTolerance) &&
@@ -203,16 +203,16 @@ void draw() {
     } */
 
     // Elisas curve
-    drawCurve(curve, 25,75, width/2-50, wHeight-100, 36, 4, 120, 25);
+    drawCurve(curve, 25,lineHeight*2, width/2-50, wHeight-lineHeight*4, 36, 4, 120, 25);
 
     if(stage == 3) {
       // display "disconnected" data with low noise
-      drawCurve(nullCurve, width/2+25,75, width/2-50, wHeight-100, scale, amplitude, frequency, noise/20);
+      drawCurve(nullCurve, width/2+25,lineHeight*2, width/2-50, wHeight-lineHeight*4, scale, amplitude, frequency, noise/20);
     }
     
     // Grids
-    drawGrid(25,75, width/2-50, wHeight-100, 36);
-    drawGrid(width/2+25,75, width/2-50, wHeight-100, scale);
+    drawGrid(25,lineHeight*2, width/2-50, wHeight-lineHeight*4, 36);
+    drawGrid(width/2+25,lineHeight*2, width/2-50, wHeight-lineHeight*4, scale);
     /*
     MakeShadowOfBothCurves();
     } */

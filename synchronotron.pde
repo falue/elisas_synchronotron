@@ -247,7 +247,7 @@ void draw() {
   }
 
   if(!startUpLoaded) {
-    preloadAllStages(8);
+    preloadAllStages(16);
   }
 
   if(DEBUG) {

@@ -14,12 +14,12 @@ int pin_1a = 6;
 int pin_1b = 13;
 
 // scale
-int pin_2a = 11;   // Maybe reversed on those products
-int pin_2b = 5;  // Maybe reversed on those products
+int pin_2a = 11;
+int pin_2b = 5;
 
 // noise
-int pin_3a = 10;   // Maybe reversed on those products
-int pin_3b = 9;  // Maybe reversed on those products
+int pin_3a = 10;
+int pin_3b = 9;
 
 
 // amplitude

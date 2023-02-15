@@ -9,17 +9,17 @@ Run this with [processing.org](http://processing.org/download) or standalone whe
 When not on Raspberry Pi with GPIO pins and 4 connected rotary encoders,
 set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`.
 
-Press number keys `0`-`6` or left/right `arrow keys` to change stages.
-`ESC` to leave.
+Press number keys `0`-`6` or left/right `arrow keys` to change stages manually.
+Press `ESC` to leave.
 
 ## STAGES
 | Stage#| Action                                                  | At end of script..      |
 |:-----:|---------------------------------------------------------|-------------------------|
 | **0** | Blackout                                                | ..waits for UDP signal  |
 | **1** | Message"AWAITING INPUT"                                 | ..waits for UDP signal  |
-| **2** | Startup sequence of computer                            | ..*auto-jumps* to stage **3** |
+| **2** | Startup sequence of computer                            | ..**auto-jumps** to stage **3** |
 | **3** | Elisas curves, without connected brainalizer on players head | ..waits for UDP signal  |
-| **4** | Elisas curves, with connected brainalizer. Adjust with dials to sync brainwaves.  | ..*auto-jumps* to next stage when synched |
+| **4** | Elisas curves, with connected brainalizer. Adjust with dials to sync brainwaves.  | ..**auto-jumps** to next stage when synched |
 | **5** | Message "SUCCESS"                                       | ..waits for UDP signal  |
 | **6** | Elisas thoughts as sequence in DE & EN                  | ..waits for UDP signal  |
 
@@ -38,10 +38,11 @@ Press number keys `0`-`6` or left/right `arrow keys` to change stages.
 Press `ESC`.
 
 ## Adjustments
-If adjustments to the scripts are needed, open the file `/home/esc/Applications/sketchbook/elisas_synchronotron/elisas_synchronotron.pde` with processing.
-Or double click the file `processing.sh` on the desktop and click "file > open recent.. > elisas_synchronotron".
+If adjustments to the scripts are needed, open the file `~/Applications/sketchbook/synchronotron/synchronotron.pde` with processing.
+Or double click the file `processing.sh` on the desktop and click "file > open recent.. > synchronotron".
 Press the **play** button on the GUI to preview the changes. `ESC` to exit. Save and quit.
 Double click the file `startSketch.sh` on the desktop to verify changes.
+Double click the file `update.sh` on the desktop to pull latest changes made by f.Lüscher - be sure to deliver an internet connection.
 
 ## LUCKY NUMBERS
 - Amplitude  337

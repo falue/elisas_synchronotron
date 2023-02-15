@@ -84,12 +84,12 @@ int scaleReset = scale;
 int noiseReset = noise;
 
 // STYLES
-int wHeight = 450;                         // windowed content in frame to trick the 2x2 video wall converter
+int wHeight = 240;                         // windowed content in frame to trick the 2x2 video wall converter
 int mainBg = color(0,0,0);                 // RGB values
 int mainFontColor = color(255,182,0);      // RGB values
 int mainBgInitial = mainBg;                // used after invertig foreground & background. leave alone.
 int mainFontColorInitial = mainFontColor;  // used after invertig foreground & background. leave alone.
-int fontSize = wHeight/40;                         // pixel 12
+int fontSize = wHeight/30;
 int lineHeight = int(fontSize*1.4);
 int lineWeight = 2;
 
@@ -106,11 +106,8 @@ PImage cursorImg;
 
 
 void setup() {
-  // size(550,450);  // 2xVGA
-  fullScreen();
-
-  // Temp
-  wHeight = height/2;
+  size(640,480);  // VGA
+  // fullScreen();
 
   cursorImg = loadImage("cursor.gif");
 
@@ -131,7 +128,6 @@ void setup() {
 
   if(DEBUG) {
     debugSetup();
-    wHeight = height;
   }
 
   popUp("Installed version: "+version, width/4, 8*lineHeight, 6000);

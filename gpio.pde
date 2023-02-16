@@ -71,25 +71,25 @@ void gpioRead() {
 
   GPIO.noInterrupts();
   if(lastEncoded0 != 0) {
-    amplitudeKnob(amplitude + value0);
+    amplitudeKnob(amplitude + value0*ampDialSpeedFactor);
     value0 = 0;
 	lastEncoded0 = 0;
   }
 
   if(lastEncoded1 != 0) {
-    frequencyKnob(frequency + value1);
+    frequencyKnob(frequency + value1*freqDialSpeedFactor);
     value1 = 0;
 	lastEncoded1 = 0;
   }
 
   if(lastEncoded2 != 0) {
-    scaleKnob(scale + value2);
+    scaleKnob(scale + value2*scaleDialSpeedFactor);
     value2 = 0;
 	lastEncoded2 = 0;
   }
 
   if(lastEncoded3 != 0) {
-    noiseKnob(noise + value3*8);  // *8 for faster turning
+    noiseKnob(noise + value3*noiseDialSpeedFactor);
     value3 = 0;
 	lastEncoded3 = 0;
   }

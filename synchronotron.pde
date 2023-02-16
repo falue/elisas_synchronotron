@@ -71,11 +71,17 @@ int scaleWin = 36;  // In GUI: 36  // TODO: Scale for physical screen. maybe: 18
 int noiseWin = 0;   // In GUI: 416
 
 // Tolerance +/- of user input to accomplish total brain synchronicity
-//   the higher, the easier is it to win.
+//   the higher, the easier it is to win.
 int ampTolerance = 18;
 int freqTolerance = 18;
 int scaleTolerance = 10;
 int noiseTolerance = 50;
+
+// Factor to increase speed of dials ("less turning, more changing" etc)
+int ampDialSpeedFactor = 1;
+int freqDialSpeedFactor = 1;
+int scaleDialSpeedFactor = 1;
+int noiseDialSpeedFactor = 8;
 
 // For resetting stage - dont touch 
 int amplitudeReset = amplitude;

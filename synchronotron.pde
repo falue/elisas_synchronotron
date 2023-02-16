@@ -223,7 +223,8 @@ void draw() {
     /*
     MakeShadowOfBothCurves();
     } */
-    drawFakeApplicationNonsense();
+    drawFakeApplicationNonsense(0);
+    drawFakeApplicationNonsense(width/2);
 
     /* if (millis() % 1000 <= 50) {
       hasTakenScreenshot = true;

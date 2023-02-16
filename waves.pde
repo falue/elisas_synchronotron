@@ -94,10 +94,11 @@ void ghostingPaste(PImage img, int x, int y, int w, int h) {
     image(img, x+scaleMargin, y-scaleMargin);
 }
 
-void drawFakeApplicationNonsense() {
-    textAlign(RIGHT);
+void drawFakeApplicationNonsense(int x) {
     fill(mainFontColor);
-    String text1 = "My fake application is running on a cheesburger";
-    text(text1, right(0,25), wHeight-10);
-    textAlign(LEFT);
+    // monitor VGA with ca. 45 chars per line:
+    // .............................................
+    // Usable font glyphs in topaz8 font:
+    // |░▒▓│┤╡╢╖▀▐▌▄█┌┘╪╕╣║╗╝╜╛┐┴└┬├─╞┼╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫⌐©®º¦[\]^_¬¯
+    text(" RXN │  FL  │[ SUB ]│ SETUP │ CLEAR │ LOG ", lineHeight+x, wHeight-lineHeight/2);
 }

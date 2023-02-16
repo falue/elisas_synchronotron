@@ -10,7 +10,7 @@
   When not on raspberry pi with GPIO pins and 4 connected rotary encoders,
     set GPIO_AVAILABLE to false and DEBUG to true.
   press 0-6 or arrow keys to change stages.
-  esc to leave.
+  esc or right mouse button to leave.
 
   STAGES
   #   Action                                                  At end of script..
@@ -145,6 +145,11 @@ void setup() {
 void draw() {
   background(mainBg);
   // frameRate(12);
+
+  // Exit processing sketch by pressing right mouse button
+  if (mousePressed && (mouseButton == RIGHT)) {
+    exit(); 
+  }
 
   if(DEBUG) {
     debug();

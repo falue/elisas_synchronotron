@@ -10,7 +10,7 @@ When not on Raspberry Pi with GPIO pins and 4 connected rotary encoders,
 set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`.
 
 Press number keys `0`-`6` or left/right `arrow keys` to change stages manually.
-Press `ESC` to leave.
+Press `ESC` or `right mouse button` to leave.
 
 ## STAGES
 | Stage#| Action                                                  | At end of stage..      |
@@ -35,12 +35,12 @@ Press `ESC` to leave.
 - `sync_died` is sent when program closed or died
 
 ## Exit application & see desktop
-Press `ESC`.
+Press `ESC` or `right mouse button`.
 
 ## Adjustments
 If adjustments to the scripts are needed, open the file `~/Applications/sketchbook/synchronotron/synchronotron.pde` with processing.
 Or double click the file `processing.sh` on the desktop and click "file > open recent.. > synchronotron".
-Press the **play** button on the GUI to preview the changes. `ESC` to exit. Save and quit.
+Press the **play** button on the GUI to preview the changes. `ESC` or `right mouse button` to exit. Save and quit.
 
 Double click the file `startSketch.sh` on the desktop to verify changes.
 

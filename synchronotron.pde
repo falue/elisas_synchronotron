@@ -209,7 +209,8 @@ void draw() {
     } */
 
     // Elisas curve
-    drawCurve(curve, 25,lineHeight*2, width/2-50, wHeight-lineHeight*4, 36, 4, 120, 25);
+    // ampWin, freqWin, scaleWin, noiseWin
+    drawCurve(curve, 25,lineHeight*2, width/2-50, wHeight-lineHeight*4, scaleWin, ampWin, freqWin, noiseWin);
 
     if(stage == 3) {
       // display "disconnected" data with low noise
@@ -217,7 +218,7 @@ void draw() {
     }
     
     // Grids
-    drawGrid(25,lineHeight*2, width/2-50, wHeight-lineHeight*4, 36);
+    drawGrid(25,lineHeight*2, width/2-50, wHeight-lineHeight*4, scaleWin);
     drawGrid(width/2+25,lineHeight*2, width/2-50, wHeight-lineHeight*4, scale);
     /*
     MakeShadowOfBothCurves();

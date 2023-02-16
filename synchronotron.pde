@@ -51,10 +51,10 @@ int portIncoming = 6000;         // Port to listen to for incoming messages
 // Initial "wrong" values
 // Note, to adjust these numbers, enable DEBUG
 //   and enter the numbers on the dials, not the one in the orange dialog box.
-int amplitude = 25;
-int frequency = 170;
-int scale = 9;   // TODO: Scale for physical screen. maybe: 18,152,8,0?
-int noise = 290;
+int amplitude = 12;
+int frequency = 80;
+int scale = 24;
+int noise = 380;
 // Min/Max values
 int ampMin = 0;
 int ampMax = 50;
@@ -65,10 +65,10 @@ int scaleMax = 75;
 int noiseMin = -420;
 int noiseMax = 420;
 // Winning numbers on dials (also, initial adjustments for elisas curves)
-int ampWin = 4;     // In GUI: 337
-int freqWin = 120;  // In GUI: 224
-int scaleWin = 36;  // In GUI: 36  // TODO: Scale for physical screen. maybe: 18,152,8,0?
-int noiseWin = 0;   // In GUI: 416
+int ampWin = 12;    // In GUI +333: 345
+int freqWin = 183;  // In GUI +124: 307
+int scaleWin = 12;  // In GUI +0:    12
+int noiseWin = 8;   // In GUI +416: 424
 
 // Tolerance +/- of user input to accomplish total brain synchronicity
 //   the higher, the easier it is to win.

@@ -39,8 +39,10 @@ void scrollText(String[] data, int interval, int accuracy, int x, int y, int w, 
     
     // End reached & action for stage 2
     if(stage == 2 && scrollIndex == data.length-1) {
-        nextStage();
         println("booted_up");
+        delay(4444);
+        nextStage();
+        println("next!");
     }
     
     // End reached & action for stage 6

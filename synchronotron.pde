@@ -112,11 +112,8 @@ PImage cursorImg;
 
 
 void setup() {
-  if(DEBUG) {
-    size(640,480);  // VGA
-  } else {
-    fullScreen();
-  }
+  //size(640,480);  // VGA
+  fullScreen();
 
   cursorImg = loadImage("cursor.gif");
 

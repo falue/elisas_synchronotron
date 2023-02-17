@@ -37,8 +37,8 @@ import java.util.Arrays;
 
 // GLOBALS
 boolean GPIO_AVAILABLE = true;   // True for raspberry pi or computers with GPIOs
-boolean DEBUG = true;           // Display infos and dials to play without GPIO
-boolean CROSSHAIR = true;       // To calibrate monitors; displays frames and centerlines etc
+boolean DEBUG = false;           // Display infos and dials to play without GPIO
+boolean CROSSHAIR = false;       // To calibrate monitors; displays frames and centerlines etc
 boolean AUTOSCALE = false;       // If preloading takes ages or never finishes, turn this on.
                                  //   It rescales the viewing window until a framerate of 10 is matched.
 
@@ -112,8 +112,11 @@ PImage cursorImg;
 
 
 void setup() {
-  size(640,480);  // VGA
-  // fullScreen();
+  if(DEBUG) {
+    size(640,480);  // VGA
+  } else {
+    fullScreen();
+  }
 
   cursorImg = loadImage("cursor.gif");
 

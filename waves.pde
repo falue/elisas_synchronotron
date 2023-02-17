@@ -81,8 +81,8 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
     //Cover up overshooting curve top and bottom
     fill(mainBg);
     noStroke();
-    rect(x+lineWeight+scaleMargin, y+h-scaleMargin, w-scaleMargin, wHeight);
-    rect(x+lineWeight+scaleMargin, 0, w-scaleMargin, y);
+    rect(x, 0, w, y);
+    rect(x+lineWeight+scaleMargin, y+h-scaleMargin, w-scaleMargin, height-wHeight-y);
 
     strokeWeight(lineWeight);
 };

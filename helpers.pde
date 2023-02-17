@@ -110,8 +110,8 @@ void popUp(String text, int x, int timeOut) {
 }
 
 void preloadAllStages(float desiredFrameRate) {
-  popUp("LOADING UNTIL FRAMERATE > "+desiredFrameRate, width/4, 0);
-  popUp(round(frameRate, 2)+"fps", width/4*3, 0);
+  popUp("LOAD FRAMERATE: "+round(frameRate, 2)+" > "+desiredFrameRate+"fps", width/4, 0);
+  popUp(round(100*frameRate/desiredFrameRate)+"%", width/4*3, 0);
   if(stage == 0) {
     goToStage(3);
   } else if(stage == 3) {
@@ -133,7 +133,6 @@ void preloadAllStages(float desiredFrameRate) {
     } else {
       println("Loaded stage 4");
       goToStage(0);
-      popUp("Loaded & ready to rumble.", width/4, 6000);
       popUp("Loaded & ready to rumble.", width/4*3, 6000);
       startUpLoaded = true;
       udp.send("sync_ready", ip, port);

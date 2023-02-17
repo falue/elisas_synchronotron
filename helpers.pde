@@ -78,7 +78,7 @@ void popUp(String text, int x, int y, int timeOut) {
 
   textAlign(CENTER);
   fill(mainBg);
-  text(text, x, y+h/4);
+  text(text, x, y+h/2);
   textAlign(LEFT);
   textSize(fontSize);
   

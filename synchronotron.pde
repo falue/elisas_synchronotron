@@ -43,9 +43,9 @@ boolean AUTOSCALE = false;       // If preloading takes ages or never finishes, 
                                  //   It rescales the viewing window until a framerate of 10 is matched.
 
 // UDP settings
-String ip = "192.168.1.45";      // The remote IP address - your local network. Should be static.
-int port = 8888;                 // The destination port
-int portIncoming = 6000;         // Port to listen to for incoming messages
+String ip = "192.168.1.66";      // The remote IP address - your local network. Should be static.
+int port = 53544;                 // The destination port
+int portIncoming = 53545;         // Port to listen to for incoming messages
 
 // GAME MECHANICS
 // Initial "wrong" values

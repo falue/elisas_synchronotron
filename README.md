@@ -23,28 +23,37 @@ Press `ESC` or `right mouse button` to leave.
 | **5** | Message "SUCCESS"                                       | ..wait for UDP signal  |
 | **6** | Elisas thoughts as sequence in DE & EN                  | ..wait for UDP signal  |
 
+## IP & USER
+The IP address is fixed to `192.168.1.226`.
+- username raspberry pi: `esc`
+- password raspberry pi: `synchron`
+
 ## UDP
-**Messages to control this script:**
+**Messages received by this script @ port `53545`:**
 - `sync_stage0`, `sync_stage1` etc: Jump to a specific stage (`0`...`6`).
 - `sync_skipLoading` can be used to skip the initial loading process if it takes forever. (Stage `3`+`4` will not be as fast at first)
 
-**Messages sent by this script:**
+**Messages sent by this script to port @ `53544`:**
 - `sync_ready` is sent when initially "loaded" stage `3`+`4` (only on startup)
 - `sync_success` is sent when both curves where properly aligned by the player
 - `sync_end_of_thoughts` is sent after the last thought of elisa
 - `sync_died` is sent when program closed or died
 
-## Exit application & see desktop
+## EXIT APPLICATION TO DESKTOP
 Press `ESC` or `right mouse button`.
 
-## Adjustments
+## ADJUSTMENTS
+To see the whole screen on one monitor, press the "SPLITTER" button on the "video wall hdmi" remote.
+
 If adjustments to the scripts are needed, open the file `~/Applications/sketchbook/synchronotron/synchronotron.pde` with processing.
-Or double click the file `processing.sh` on the desktop and click "file > open recent.. > synchronotron".
+Or double click the file `editor.sh` on the desktop and click "*file* > *open recent..* > *synchronotron*".
 Press the **play** button on the GUI to preview the changes. `ESC` or `right mouse button` to exit. Save and quit.
 
-Double click the file `startSketch.sh` on the desktop to verify changes.
+Double click the file `play.sh` on the desktop to verify changes.
 
-Double click the file `update.sh` on the desktop to pull latest changes made by f.Lüscher - be sure to deliver an internet connection.
+Double click the file `update_and_play.sh` on the desktop to pull latest changes made by f.Lüscher - be sure to deliver an internet connection.
+
+To reset the screens, press the "2x2" button on the "video wall hdmi" remote.
 
 **NOTE**: If you update, you loose all local changes made by you to `~/Applications/sketchbook/synchronotron/synchronotron.pde`.
 

@@ -183,20 +183,12 @@ void draw() {
     // Catch main btn switch
     if(GPIO.digitalRead(mainSwitchPin) == GPIO.LOW) {
       GPIO.digitalWrite(switchLedPin, GPIO.HIGH);
-      fill(mainFontColor);
-      rect(0, 0, width, wHeight);
       while(GPIO.digitalRead(mainSwitchPin) == GPIO.LOW) {
         // twiddle thumbs until user releases button
         delay(25);
       }
-      delay(666);
-      fill(mainBg);
-      rect(0, 0, width, wHeight);
-      delay(255);
-      popUp("BOOTING", width/4, 0);
-      popUp("BOOTING", width/4*3, 0);
       nextStage();
-      delay(1500);
+      delay(500);
     } else {
       GPIO.digitalWrite(switchLedPin, GPIO.LOW);
     }

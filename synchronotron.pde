@@ -182,19 +182,21 @@ void draw() {
 
     // Catch main btn switch
     if(GPIO.digitalRead(mainSwitchPin) == GPIO.LOW) {
-      background(mainFontColor);
+      GPIO.digitalWrite(switchLedPin, GPIO.HIGH);
+      fill(mainFontColor);
+      rect(0, 0, width, wHeight);
       while(GPIO.digitalRead(mainSwitchPin) == GPIO.LOW) {
         // twiddle thumbs until user releases button
         delay(25);
       }
+      delay(666);
+      fill(mainBg);
+      rect(0, 0, width, wHeight);
       delay(255);
-      background(mainBg);
-      nextStage();
       popUp("BOOTING", width/4, 0);
       popUp("BOOTING", width/4*3, 0);
-      delay(255);
-      GPIO.digitalWrite(switchLedPin, GPIO.HIGH);
-      delay(500);
+      nextStage();
+      delay(1500);
     } else {
       GPIO.digitalWrite(switchLedPin, GPIO.LOW);
     }
@@ -310,6 +312,9 @@ void goToStage(int index) {
   mainBg = color(mainBgInitial);  // FLIP COLORS BACK
   mainFontColor = color(mainFontColorInitial);  // FLIP COLORS BACK
   stage = index;
+
+  if(stage >= 2) GPIO.digitalWrite(switchLedPin, GPIO.HIGH);
+  if(stage <= 1>) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
 }
 
 void nextStage() {
@@ -328,10 +333,14 @@ void nextStage() {
 
   if(stage+1 == 4) popUp(">BRAINALIZER CONNECTED", width/4*3, 2500);
 
+  if(stage+1 >= 2) GPIO.digitalWrite(switchLedPin, GPIO.HIGH);
+  if(stage+1 == 1) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
+
   if(stage+1 <= maxStage) {
     stage++;
   } else {
     stage = 0;
+    GPIO.digitalWrite(switchLedPin, GPIO.LOW);
   }
 }
 void prevStage() {
@@ -341,6 +350,9 @@ void prevStage() {
   mainFontColor = color(mainFontColorInitial);  // FLIP COLORS BACK
 
   if(stage-1 == 3) popUp(">BRAINALIZER DISCONNECTED", width/4*3, 1250);
+  
+  if(stage-1 >= 2) GPIO.digitalWrite(switchLedPin, GPIO.HIGH);
+  if(stage-1 <= 1) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
 
   if(stage-1 >= 0) {
     stage--;

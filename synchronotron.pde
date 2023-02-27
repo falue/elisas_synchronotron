@@ -314,7 +314,7 @@ void goToStage(int index) {
   stage = index;
 
   if(stage >= 2) GPIO.digitalWrite(switchLedPin, GPIO.HIGH);
-  if(stage <= 1>) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
+  if(stage <= 1) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
 }
 
 void nextStage() {

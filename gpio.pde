@@ -38,6 +38,9 @@ int lastEncoded2 = 0;
 int value3 = 0;
 int lastEncoded3 = 0;
 
+// main switch & LED
+  int mainSwitchPin = 17;
+  int switchLedPin = 27;
 
 void gpioSetup() {
 	// amplitude
@@ -63,6 +66,10 @@ void gpioSetup() {
 	GPIO.pinMode(pin_3b, GPIO.INPUT_PULLUP);  // !PULLUP!
 	GPIO.attachInterrupt(pin_3a, this, "updateEncoder3", GPIO.CHANGE);
 	GPIO.attachInterrupt(pin_3b, this, "updateEncoder3", GPIO.CHANGE);
+
+	// main switch + LED
+	GPIO.pinMode(mainSwitchPin, GPIO.INPUT_PULLUP);
+	GPIO.pinMode(switchLedPin, GPIO.OUTPUT);
 }
 
 void gpioRead() {

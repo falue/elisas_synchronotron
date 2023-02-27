@@ -163,6 +163,9 @@ void draw() {
   if(GPIO_AVAILABLE) gpioRead();
 
   if(stage == 0) {
+    // Reset LED of button
+    GPIO.digitalWrite(switchLedPin, GPIO.LOW);
+
     // BLACKOUT
     if(DEBUG) {
       centerText("[BLACKOUT]", wHeight/2, 0,width/2);
@@ -175,6 +178,25 @@ void draw() {
     if (millis() % 1000 <= 500) {
       popUp("AWAITING INPUT", width/4, 0);
       popUp("AWAITING INPUT", width/4*3, 0);
+    }
+
+    // Catch main btn switch
+    if(GPIO.digitalRead(mainSwitchPin) == GPIO.LOW) {
+      background(mainFontColor);
+      while(GPIO.digitalRead(mainSwitchPin) == GPIO.LOW) {
+        // twiddle thumbs until user releases button
+        delay(25);
+      }
+      delay(255);
+      background(mainBg);
+      nextStage();
+      popUp("BOOTING", width/4, 0);
+      popUp("BOOTING", width/4*3, 0);
+      delay(255);
+      GPIO.digitalWrite(switchLedPin, GPIO.HIGH);
+      delay(500);
+    } else {
+      GPIO.digitalWrite(switchLedPin, GPIO.LOW);
     }
   }
 

@@ -46,14 +46,13 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
 
     float noiseCorr = 0;
     float perlinNoise = 0;
-    noise = noise < 5 && noise > -5 ? 5 : noise;
+    // Do not completely eradicate jitter
+    noise = noise < 5 && noise > -5 ? 5 : noise;// -60 to +76 = dead zone
     
     GPIO.noInterrupts();
     beginShape();
     for (int i = 0; i < data.length && (i-2)*scale*(freq/100.0) <= w-scaleMargin; i++) {
-        if(frameRate > 5) {
-            // Do not completely eradicate jitter
-
+        //if(frameRate > 5) {
             // Calculate jitter based on de-noise knob
             perlinNoiseCoordY = perlinNoiseCoordY + map(noise, 10, noiseMax, 0.001, .1);
             perlinNoise = noise(perlinNoiseCoordY, perlinNoiseCoordY);
@@ -72,7 +71,7 @@ void drawCurve(int[] data, int x, int y, int w, int h, int scale, int amp, int f
             /* if(perlinNoise < 0.2) {
                 noiseCorr *= noiseCorr/4;
             } */
-        }
+        //}
         curveVertex(x+scaleMargin+(i-1)*scale*(freq/100.0),  map(data[i]*scale*(amp/100.0)-int(noiseCorr), 0,1024, y+h-scaleMargin, y));
     }
     endShape();

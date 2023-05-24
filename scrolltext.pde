@@ -52,7 +52,7 @@ void scrollText(String[] data, int interval, int accuracy, int x, int y, int w, 
         //   sends this already when first text reaches end of text, not when last text is written.
         //   maybe doesn't matter because text have equal lengths,
         //   also, nothing is dependend on this message
-        udp.send("sync_end_of_thoughts", ip, port );
+        udp.send("sync_end_of_thoughts", remoteIp, remotePort );
         fin = true;
     }
 }

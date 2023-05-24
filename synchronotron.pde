@@ -36,13 +36,17 @@ import java.util.Arrays;
 //// FROM HERE: ADJUST FOR PREFERENCES -----------------------
 
 // GLOBALS
-boolean GPIO_AVAILABLE = true;   // True for raspberry pi or computers with GPIOs
-boolean DEBUG = false;           // Display infos and dials to play without GPIO
+boolean GPIO_AVAILABLE = false;   // True for raspberry pi or computers with GPIOs
+boolean DEBUG = true;           // Display infos and dials to play without GPIO
 boolean CROSSHAIR = false;       // To calibrate monitors; displays frames and centerlines etc
 boolean AUTOSCALE = false;       // If preloading takes ages or never finishes, turn this on.
                                  //   It rescales the viewing window until a framerate of 10 is matched.
 
 // UDP settings
+// FIXME: ip should be localIp (IP of this raspberry)
+// String remoteIp = "192.168.1.71"  // IP of controllino
+// remoteIp, remotePort
+
 String ip = "192.168.1.66";      // The remote IP address - your local network. Should be static.
 int port = 53544;                 // The destination port
 int portIncoming = 53545;         // Port to listen to for incoming messages
@@ -112,8 +116,8 @@ PImage cursorImg;
 
 
 void setup() {
-  //size(640,480);  // VGA
-  fullScreen();
+  size(640,480);  // VGA
+  //fullScreen();
 
   cursorImg = loadImage("cursor.gif");
 
@@ -218,7 +222,7 @@ void draw() {
       nextStage();
       
       // Send the good message to the controlino
-      udp.send("sync_success", ip, port );
+      udp.send("sync_success", remoteIp, remotePort );
     }
   }
 
@@ -295,7 +299,7 @@ private void prepareExitHandler () {
   Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
     public void run () {
       println("Program closed or died");
-      udp.send("sync_died", ip, port);
+      udp.send("sync_died", remoteIp, remotePort);
     }
   }));
 }

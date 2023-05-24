@@ -25,6 +25,9 @@ Press `ESC` or `right mouse button` to leave.
 
 ## IP & USER
 The IP address is fixed to `192.168.1.226`.
+WRONG
+currently 192.168.1.60
+
 - username raspberry pi: `esc`
 - password raspberry pi: `synchron`
 

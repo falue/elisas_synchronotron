@@ -135,7 +135,7 @@ void preloadAllStages(float desiredFrameRate) {
       goToStage(0);
       popUp("Loaded & ready to rumble.", width/4*3, 6000);
       startUpLoaded = true;
-      udp.send("sync_ready", ip, port);
+      udp.send("sync_ready", remoteIp, remotePort);
     }
   }
 }

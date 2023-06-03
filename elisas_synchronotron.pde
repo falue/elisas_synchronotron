@@ -44,10 +44,11 @@ boolean AUTOSCALE = false;       // If preloading takes ages or never finishes, 
 
 // UDP settings
 // FIXME: ip should be localIp (IP of this raspberry)
-// String remoteIp = "192.168.1.71"  // IP of controllino
+String remoteIp = "192.168.1.71";  // IP of controllino
+int remotePort = 553455;
 // remoteIp, remotePort
 
-String ip = "192.168.1.66";      // The remote IP address - your local network. Should be static.
+String ip = "192.168.1.66";       // The remote IP address - your local network. Should be static.
 int port = 53544;                 // The destination port
 int portIncoming = 53545;         // Port to listen to for incoming messages
 

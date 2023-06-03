@@ -10,7 +10,7 @@ When not on Raspberry Pi with GPIO pins and 4 connected rotary encoders,
 set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`.
 
 Press number keys `0`-`6` or left/right `arrow keys` to change stages manually.
-Press `ESC` or `right mouse button` to leave.
+Press `ESC` or `right mouse button` to go to desktop.
 
 ## STAGES
 | Stage#| Action                                                  | At end of stage..      |
@@ -24,9 +24,7 @@ Press `ESC` or `right mouse button` to leave.
 | **6** | Elisas thoughts as sequence in DE & EN                  | ..wait for UDP signal  |
 
 ## IP & USER
-The IP address is fixed to `192.168.1.226`.
-WRONG
-currently 192.168.1.60
+The IP address is *currently* fixed to `192.168.1.60`.
 
 - username raspberry pi: `esc`
 - password raspberry pi: `synchron`
@@ -48,8 +46,8 @@ Press `ESC` or `right mouse button`.
 ## ADJUSTMENTS
 To see the whole screen on one monitor, press the "SPLITTER" button on the "video wall hdmi" remote.
 
-If adjustments to the scripts are needed, open the file `~/Applications/sketchbook/synchronotron/synchronotron.pde` with processing.
-Or double click the file `editor.sh` on the desktop and click "*file* > *open recent..* > *synchronotron*".
+If adjustments to the scripts are needed, open the file `~/Applications/sketchbook/elisas_synchronotron/elisas_synchronotron.pde` with processing.
+Or double click the file `editor.sh` on the desktop and click "*file* > *open recent..* > *elisas_synchronotron*".
 Press the **play** button on the GUI to preview the changes. `ESC` or `right mouse button` to exit. Save and quit.
 
 Double click the file `play.sh` on the desktop to verify changes.
@@ -58,7 +56,7 @@ Double click the file `update_and_play.sh` on the desktop to pull latest changes
 
 To reset the screens, press the "2x2" button on the "video wall hdmi" remote.
 
-**NOTE**: If you update, you loose all local changes made by you to `~/Applications/sketchbook/synchronotron/synchronotron.pde`.
+**NOTE**: If you update, you loose all local changes made by you to `~/Applications/sketchbook/elisas_synchronotron/elisas_synchronotron.pde`.
 
 
 ## LUCKY NUMBERS
@@ -68,3 +66,28 @@ To reset the screens, press the "2x2" button on the "video wall hdmi" remote.
 | Frequency | +**307** |
 | Scale     |  +**12** |
 | De-noise  | +**424** |
+
+
+# NERD STUFF
+## deployment
+1. ***keep** the folder `/linux-arm` for the file `libprocessing-io.so` which is not added automatically*
+2. Build with processing 4 on mac. forget java.
+3. git add, git push on mac
+4. git pull on raspi
+
+
+## logging of boot:
+    tail -f /home/esc/.cache/lxsession/LXDE-pi/run.log
+
+## start elisas_synchronotron:
+    sudo /home/esc/Applications/sketchbook/elisas_synchronotron/linux-arm/elisas_synchronotron
+
+## change startup things:
+    nano /home/esc/.config/lxsession/LXDE-pi/autostart
+
+## Use & make symlink to java that is used by processing editor (not needed if openjdk 17 is isntalled):
+	sudo ln -s /home/esc/Applications/processing-4.1.2/java/bin/java /usr/bin
+
+
+## Use & make symlink to missing native io library (if )
+    ln -s ~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-armv6hf/libprocessing-io.so lib/

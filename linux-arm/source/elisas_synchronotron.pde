@@ -1,4 +1,3 @@
-
 /*
   Elisas Strange Case - Processing sketch 
   =====================================================
@@ -32,10 +31,6 @@
     No library found for hypermedia.net  -> in library manager look for "UDP" by Stephane Cousot (!!)
 */
 
-
-
-
-// /home/esc/Applications/processing-4.1.2/java/bin
 import java.util.Arrays;
 
 //// FROM HERE: ADJUST FOR PREFERENCES -----------------------
@@ -53,7 +48,7 @@ String remoteIp = "192.168.1.71";  // IP of controllino
 int remotePort = 553455;
 // remoteIp, remotePort
 
-String ip = "192.168.1.66";      // The remote IP address - your local network. Should be static.
+String ip = "192.168.1.66";       // The remote IP address - your local network. Should be static.
 int port = 53544;                 // The destination port
 int portIncoming = 53545;         // Port to listen to for incoming messages
 
@@ -122,8 +117,8 @@ PImage cursorImg;
 
 
 void setup() {
-  size(640,480);  // VGA
-  //fullScreen();
+  //size(640,480);  // VGA
+  fullScreen();
 
   cursorImg = loadImage("cursor.gif");
 

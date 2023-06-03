@@ -20,7 +20,6 @@ import java.io.IOException;
 
 public class elisas_synchronotron extends PApplet {
 
-
 /*
   Elisas Strange Case - Processing sketch 
   =====================================================
@@ -56,10 +55,6 @@ public class elisas_synchronotron extends PApplet {
 
 
 
-
-// /home/esc/Applications/processing-4.1.2/java/bin
-
-
 //// FROM HERE: ADJUST FOR PREFERENCES -----------------------
 
 // GLOBALS
@@ -75,7 +70,7 @@ String remoteIp = "192.168.1.71";  // IP of controllino
 int remotePort = 553455;
 // remoteIp, remotePort
 
-String ip = "192.168.1.66";      // The remote IP address - your local network. Should be static.
+String ip = "192.168.1.66";       // The remote IP address - your local network. Should be static.
 int port = 53544;                 // The destination port
 int portIncoming = 53545;         // Port to listen to for incoming messages
 
@@ -144,8 +139,8 @@ PImage cursorImg;
 
 
 public void setup() {
-  /* size commented out by preprocessor */;  // VGA
-  //fullScreen();
+  //size(640,480);  // VGA
+  /* size commented out by preprocessor */;
 
   cursorImg = loadImage("cursor.gif");
 
@@ -1313,7 +1308,7 @@ public void drawFakeApplicationNonsense(int x) {
 }
 
 
-  public void settings() { size(640, 480); }
+  public void settings() { fullScreen(); }
 
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "elisas_synchronotron" };

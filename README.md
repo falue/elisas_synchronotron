@@ -70,7 +70,7 @@ To reset the screens, press the "2x2" button on the "video wall hdmi" remote.
 
 # NERD STUFF
 ## deployment
-1. ***keep** the folder `/linux-arm` for the file `libprocessing-io.so` which is not added automatically*
+1. ***keep** the folder `/linux-arm` for the sym link `libprocessing-io.so` which is not added automatically*
 2. Build with processing 4 on mac. forget java.
 3. git add, git push on mac
 4. git pull on raspi
@@ -85,9 +85,15 @@ To reset the screens, press the "2x2" button on the "video wall hdmi" remote.
 ## change startup things:
     nano /home/esc/.config/lxsession/LXDE-pi/autostart
 
-## Use & make symlink to java that is used by processing editor (not needed if openjdk 17 is isntalled):
+# If java is not found or java says "this application was build with a newer version of java":
+
+## EITHER: Update / install newest java
+    sudo apt install openjdk-17-jdk -y
+
+## OR: Use & make symlink to java that is used by processing editor (not needed if openjdk 17 is isntalled):
 	sudo ln -s /home/esc/Applications/processing-4.1.2/java/bin/java /usr/bin
 
 
+# If something with "libprocessing-io not found":
 ## Use & make symlink to missing native io library (if )
     ln -s ~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-armv6hf/libprocessing-io.so lib/

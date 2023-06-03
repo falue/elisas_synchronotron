@@ -70,8 +70,9 @@ To reset the screens, press the "2x2" button on the "video wall hdmi" remote.
 
 # NERD STUFF
 ## deployment
-1. ***keep** the folder `/linux-arm` for the sym link `libprocessing-io.so` which is not added automatically*
-2. Build with processing 4 on mac. forget java.
+1. ***move** the file `libprocessing-io.so` from `/linux-arm/lib` out of the ways before deployment*
+2. Build with processing 4 on mac. forget java. Build empties the folder `/linux-arm`first.
+3. ***move** the file `libprocessing-io.so` to `/linux-arm/lib` again*
 3. git add, git push on mac
 4. git pull on raspi
 

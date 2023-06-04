@@ -72,10 +72,11 @@ After changes are made, double click the file `update_and_play.sh` on the deskto
 # NERD STUFF
 ## deployment
 1. ***move** the file `libprocessing-io.so` from `/linux-arm/lib` out of the ways before deployment*
-2. Build with processing 4 on mac. forget java. Build empties the folder `/linux-arm`first.
-3. ***move** the file `libprocessing-io.so` to `/linux-arm/lib` again*
-3. git add, git push on mac
-4. git pull on raspi
+2. Delete folder `/linux-arm/lib` because sometimes Processing does not deploy the newest version
+3. Build with processing 4 on mac. forget java. Build empties the folder `/linux-arm`first.
+4. ***move** the file `libprocessing-io.so` to `/linux-arm/lib` again*. It is also available in the `_tools` folder.
+5. git add, git push on mac
+6. git pull on raspi
 
 
 ## logging of boot:

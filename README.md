@@ -13,15 +13,32 @@ Press number keys `0`-`6` or left/right `arrow keys` to change stages manually.
 Press `ESC` or `right mouse button` to go to desktop.
 
 ## STAGES
-| Stage#| Action                                                  | At end of stage..      |
-|:-----:|---------------------------------------------------------|-------------------------|
-| **0** | Blackout                                                | ..wait for UDP signal  |
-| **1** | Message "AWAITING INPUT"                                 | ..wait for UDP signal  |
-| **2** | Startup sequence of computer                            | ..**auto-jump** to stage **3** |
-| **3** | Elisas curves, without connected brainalizer on players head | ..wait for UDP signal  |
-| **4** | Elisas curves, with connected brainalizer. Adjust with dials to sync brainwaves.  | ..**auto-jump** to next stage when synched |
-| **5** | Message "SUCCESS"                                       | ..wait for UDP signal  |
-| **6** | Elisas thoughts as sequence in DE & EN                  | ..wait for UDP signal  |
+| Stage#| Content                        | Interaction                  | At end of stage..      |
+|:-----:|----------------------------    | -----------------------------|-------------------------|
+| **0** | Blackout.                      | Nothing works.               | ..waits for UDP signal  |
+| **1** | Message "AWAITING INPUT".      | Flick the switch!            | ..waits for UDP signal  |
+| **2** | Startup sequence of computer.  | Wait.                        | ..**auto-jumps** to stage **3** |
+| **3** | Elisas curves, without connected brainalizer on players head | Nothing works. Awaiting User to plug in Headset. | ..waits for UDP signal  |
+| **4** | Elisas curves, with connected brainalizer. |  Adjust with dials to sync brainwaves.  | ..**auto-jumps** to next stage when synched |
+| **5** | Message "SUCCESS"                         | Wait.             | ..waits for UDP signal  |
+| **6** | Elisas thoughts as sequence in DE & EN    | Wait.             | ..waits for UDP signal  |
+
+## UDP
+Sending UDP Messages @ `53544`:
+data                   | info
+---------------------- | --- |
+`sync_ready`           | initially "loaded" stage `3`+`4` (only on startup) |
+`sync_success`         | both curves where properly aligned by the player |
+`sync_end_of_thoughts` | is sent after the last thought of elisa on stage `6` |
+`sync_died`            | program closed or died |
+
+
+Listens to UDP Messages @ port `53545`:
+data                             | info
+-------------------------------- | --- |
+`sync_stage0`, `sync_stage1` etc | Jump to a specific stage (`0`...`6`). |
+`sync_skipLoading`               | can be used to skip the initial loading process if it takes forever. (Stage `3`+`4` will stay slow) |
+
 
 ## IP & USER
 The IP address is *currently* fixed to `192.168.1.60`.
@@ -29,34 +46,18 @@ The IP address is *currently* fixed to `192.168.1.60`.
 - username raspberry pi: `esc`
 - password raspberry pi: `synchron`
 
-## UDP
-**Messages received by this script @ port `53545`:**
-- `sync_stage0`, `sync_stage1` etc: Jump to a specific stage (`0`...`6`).
-- `sync_skipLoading` can be used to skip the initial loading process if it takes forever. (Stage `3`+`4` will not be as fast at first)
 
-**Messages sent by this script to port @ `53544`:**
-- `sync_ready` is sent when initially "loaded" stage `3`+`4` (only on startup)
-- `sync_success` is sent when both curves where properly aligned by the player
-- `sync_end_of_thoughts` is sent after the last thought of elisa
-- `sync_died` is sent when program closed or died
+## EXIT / RESTART APPLICATION
+Press `ESC` or `right mouse button` to exit the program and see the desktop.
+Double click the file `play.sh` on the desktop to restart application.
+To see the whole screen on one monitor, press the "SPLITTER" button on the "video wall hdmi" remote inside the computer case.
+To reset the screens, press the "2x2" button on the remote.
 
-## EXIT APPLICATION TO DESKTOP
-Press `ESC` or `right mouse button`.
+## UPDATE
+If adjustments to the scripts are needed, call f.luescher 0787424834 or info@fluescher.ch.
 
-## ADJUSTMENTS
-To see the whole screen on one monitor, press the "SPLITTER" button on the "video wall hdmi" remote.
+After changes are made, double click the file `update_and_play.sh` on the desktop to pull latest changes made - be sure to deliver an internet connection. During loading, you'll see a new version number.
 
-If adjustments to the scripts are needed, open the file `~/Applications/sketchbook/elisas_synchronotron/elisas_synchronotron.pde` with processing.
-Or double click the file `editor.sh` on the desktop and click "*file* > *open recent..* > *elisas_synchronotron*".
-Press the **play** button on the GUI to preview the changes. `ESC` or `right mouse button` to exit. Save and quit.
-
-Double click the file `play.sh` on the desktop to verify changes.
-
-Double click the file `update_and_play.sh` on the desktop to pull latest changes made by f.Lüscher - be sure to deliver an internet connection.
-
-To reset the screens, press the "2x2" button on the "video wall hdmi" remote.
-
-**NOTE**: If you update, you loose all local changes made by you to `~/Applications/sketchbook/elisas_synchronotron/elisas_synchronotron.pde`.
 
 
 ## LUCKY NUMBERS

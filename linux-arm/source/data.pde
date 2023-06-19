@@ -66,6 +66,7 @@ String[] thoughtsEn = {
     "Im really scared. I don't know what is",
     "happening to me but im transforming into",
     "a doll.",
+    "",
     "You have to travel into my memories and ",
     "find out what happened to me.",
     "",

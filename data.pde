@@ -58,6 +58,7 @@ String[] thoughtsDe = {
     "Aber Vorsicht! Ihr dürft auf keinen Fall...",
     ""
 };
+
 String[] thoughtsEn = {
     "Hello? is anyone there? Can you hear me?",
     "Im so happy you guys are here.",

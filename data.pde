@@ -44,7 +44,6 @@ String[] boot = {
 };
 
 String[] thoughtsDe = {
-    "- All work and no play makes jack a dull"
     "Hallo?... Ist da jemand? könnt ihr mich",
     "hören? Zum Glück seid ihr gekommen...",
     "Ich brauche eure Hilfe.",

@@ -55,8 +55,8 @@ String[] thoughtsDe = {
     "passiert ist.",
     "",
     "Bitte, ihr seid meine letzte Hoffnung !!",
-    "Aber Vorsicht! Ihr dürft auf keinen Fall..."
-    "",
+    "Aber Vorsicht! Ihr dürft auf keinen Fall...",
+    ""
 };
 String[] thoughtsEn = {
     "Hello? is anyone there? Can you hear me?",
@@ -69,8 +69,8 @@ String[] thoughtsEn = {
     "find out what happened to me.",
     "",
     "Please, you are my last hope.",
-    "But careful! you should never..."
-    "",
+    "But careful! you should never...",
+    ""
 };
 
 /* int[] curve = {

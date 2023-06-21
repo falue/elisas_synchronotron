@@ -61,12 +61,17 @@ After changes are made, double click the file `update_and_play.sh` on the deskto
 
 
 ## LUCKY NUMBERS
-|           |          |
-|-----------|---------:|
-| Amplitude | +**345** |
-| Frequency | +**307** |
-| Scale     |  +**12** |
-| De-noise  | +**424** |
+| Knob      | **Target** | from      | to      | Error margin |
+|-----------|------------|-----------|---------|--------------|
+| Amplitude | +**345**   | 327       | 363     | ±18          |
+| Frequency | +**307**   | 289       | 325     | ±18          |
+| Scale     |  +**12**   | 2         | 22      | ±10          |
+| De-noise  | +**424**   | 374       | 474     | ±50          |
+
+
+
+
+
 
 
 # NERD STUFF
@@ -93,7 +98,7 @@ After changes are made, double click the file `update_and_play.sh` on the deskto
 ## EITHER: Update / install newest java
     sudo apt install openjdk-17-jdk -y
 
-## OR: Use & make symlink to java that is used by processing editor (not needed if openjdk 17 is isntalled):
+## OR: Use & make symlink to java that is used by processing editor (not needed if openjdk 17 is installed):
 	sudo ln -s /home/esc/Applications/processing-4.1.2/java/bin/java /usr/bin
 
 # If something with "libprocessing-io not found":

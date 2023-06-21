@@ -9,7 +9,7 @@ void drawGrid(int x, int y, int w, int h, int scale) {
     line(x+scaleMargin,y, x+scaleMargin,y+h);  // vert
 
     // subgrid horz
-    stroke(mainFontColor, 100);
+    stroke(mainFontColor, 175);  // rgb + opacity 0-255: (255,255,255, 255)
     for (int i = 0; i < h-scaleMargin; i+=scale) {
         // scale*(amplitude/100)
         line(x+scaleMargin,y+h-scaleMargin-i, x+w,y+h-scaleMargin-i);

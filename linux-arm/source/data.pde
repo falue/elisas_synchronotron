@@ -1,4 +1,4 @@
-String version = "1.65";
+String version = "1.66";
 
 String[] boot = {
     "00512 KB OK_",

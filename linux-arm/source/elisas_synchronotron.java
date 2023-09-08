@@ -385,7 +385,7 @@ public void prevStage() {
     stage = maxStage;
   }
 }
-String version = "1.65";
+String version = "1.66";
 
 String[] boot = {
     "00512 KB OK_",
@@ -1189,11 +1189,13 @@ public void scrollText(String[] data, int interval, int accuracy, int x, int y, 
     // Curves without user
     startUpLoaded = true;
     goToStage(3);
+    popUp(">BRAINALIZER DISCONNECTED", width/4*3, 1250);
   
   } else if(Arrays.equals(data, "sync_stage4".getBytes())) {
     // Curves with user
     startUpLoaded = true;
     goToStage(4);
+    popUp(">BRAINALIZER CONNECTED", width/4*3, 2500);
   
   } else if(Arrays.equals(data, "sync_stage5".getBytes())) {
     // Success!

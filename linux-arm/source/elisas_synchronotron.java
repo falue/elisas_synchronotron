@@ -191,13 +191,14 @@ public void draw() {
 
   if(stage == 0) {
     // Reset LED of button
-    if(GPIO_AVAILABLE) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
+    /* if(GPIO_AVAILABLE) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
 
     // BLACKOUT
     if(DEBUG) {
       centerText("[BLACKOUT]", wHeight/2, 0,width/2);
       centerText("[BLACKOUT]", wHeight/2, width/2,width);
-    }
+    } */
+    goToStage(1);
   }
 
   if(stage == 1) {
@@ -384,7 +385,7 @@ public void prevStage() {
     stage = maxStage;
   }
 }
-String version = "1.62";
+String version = "1.64";
 
 String[] boot = {
     "00512 KB OK_",
@@ -1006,7 +1007,7 @@ public void popUp(String text, int x, int timeOut) {
 public void preloadAllStages(float desiredFrameRate) {
   popUp("LOAD FRAMERATE: "+round(frameRate, 2)+" > "+desiredFrameRate+"fps", width/4, 0);
   popUp(round(100*frameRate/desiredFrameRate)+"%", width/4*3, 0);
-  if(stage == 0) {
+  if(stage == 0 || stage == 1) {
     goToStage(3);
   } else if(stage == 3) {
     // wait for frame rate to recover
@@ -1026,7 +1027,7 @@ public void preloadAllStages(float desiredFrameRate) {
       println("wait for framerate to be bigger than "+desiredFrameRate+": " + frameRate);  // twiddle dee
     } else {
       println("Loaded stage 4");
-      goToStage(0);
+      goToStage(1);
       popUp("Loaded & ready to rumble.", width/4*3, 6000);
       startUpLoaded = true;
       udp.send("sync_ready", remoteIp, remotePort);

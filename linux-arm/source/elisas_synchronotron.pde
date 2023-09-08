@@ -169,13 +169,14 @@ void draw() {
 
   if(stage == 0) {
     // Reset LED of button
-    if(GPIO_AVAILABLE) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
+    /* if(GPIO_AVAILABLE) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
 
     // BLACKOUT
     if(DEBUG) {
       centerText("[BLACKOUT]", wHeight/2, 0,width/2);
       centerText("[BLACKOUT]", wHeight/2, width/2,width);
-    }
+    } */
+    goToStage(1);
   }
 
   if(stage == 1) {

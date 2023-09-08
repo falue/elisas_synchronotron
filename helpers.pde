@@ -112,7 +112,7 @@ void popUp(String text, int x, int timeOut) {
 void preloadAllStages(float desiredFrameRate) {
   popUp("LOAD FRAMERATE: "+round(frameRate, 2)+" > "+desiredFrameRate+"fps", width/4, 0);
   popUp(round(100*frameRate/desiredFrameRate)+"%", width/4*3, 0);
-  if(stage == 1) {
+  if(stage == 0 || stage == 1) {
     goToStage(3);
   } else if(stage == 3) {
     // wait for frame rate to recover

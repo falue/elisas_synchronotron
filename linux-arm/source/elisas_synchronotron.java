@@ -70,8 +70,8 @@ String remoteIp = "192.168.178.40";  // IP of controller mac
 int remotePort = 53545;
 // remoteIp, remotePort
 
-String ip = "192.168.1.226";       // The remote IP address - your local network. Should be static.
-int port = 53545;  // 53544; ??????                 // The destination port
+String ip = "192.168.178.97";       // The remote IP address - your local network. Should be static.
+// int port = 53545;  // 53544; ??????                 // The destination port
 int portIncoming = 53544;         // Port to listen to for incoming messages
 
 // GAME MECHANICS
@@ -385,7 +385,7 @@ public void prevStage() {
     stage = maxStage;
   }
 }
-String version = "1.64";
+String version = "1.65";
 
 String[] boot = {
     "00512 KB OK_",

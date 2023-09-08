@@ -44,13 +44,13 @@ boolean AUTOSCALE = false;       // If preloading takes ages or never finishes, 
 
 // UDP settings
 // FIXME: ip should be localIp (IP of this raspberry)
-String remoteIp = "192.168.1.71";  // IP of controllino
-int remotePort = 553455;
+String remoteIp = "192.168.178.40";  // IP of controller mac
+int remotePort = 53545;
 // remoteIp, remotePort
 
-String ip = "192.168.1.66";       // The remote IP address - your local network. Should be static.
-int port = 53544;                 // The destination port
-int portIncoming = 53545;         // Port to listen to for incoming messages
+String ip = "192.168.1.226";       // The remote IP address - your local network. Should be static.
+int port = 53545;  // 53544; ??????                 // The destination port
+int portIncoming = 53544;         // Port to listen to for incoming messages
 
 // GAME MECHANICS
 // Initial "wrong" values
@@ -223,7 +223,7 @@ void draw() {
       nextStage();
       
       // Send the good message to the controlino
-      udp.send("sync_success", remoteIp, remotePort );
+      udp.send("/cue/sync_success/start", remoteIp, remotePort );
     }
   }
 
@@ -300,7 +300,7 @@ private void prepareExitHandler () {
   Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
     public void run () {
       println("Program closed or died");
-      udp.send("sync_died", remoteIp, remotePort);
+      udp.send("/cue/sync_died/start", remoteIp, remotePort);
     }
   }));
 }

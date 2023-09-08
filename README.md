@@ -41,7 +41,7 @@ data                             | info
 
 
 ## IP & USER
-The IP address is *currently* fixed to `192.168.1.60`.
+The IP address is fixed to `192.168.178.97`.
 
 - username raspberry pi: `esc`
 - password raspberry pi: `synchron`

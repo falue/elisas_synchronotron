@@ -65,7 +65,7 @@
     // Abort loading if stuck
      println("Aborted Loading by dungeon master");
      startUpLoaded = true;
-     goToStage(0);
+     goToStage(1);
      udp.send("sync_ready", remoteIp, remotePort);
   } else {
     println("Message was not for me :(");

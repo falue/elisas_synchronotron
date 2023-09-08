@@ -108,7 +108,7 @@ int lineWeight = 2;
 //// FROM HERE: DONT TOUCH -----------------------
 
 // GENERAL
-int stage = 0;                // keeps track of stages
+int stage = 1;                // keeps track of stages
 int maxStage = 6;
 
 // CLUTCHES
@@ -340,7 +340,7 @@ void nextStage() {
   if(stage+1 <= maxStage) {
     stage++;
   } else {
-    stage = 0;
+    stage = 1;
     if(GPIO_AVAILABLE) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
   }
 }

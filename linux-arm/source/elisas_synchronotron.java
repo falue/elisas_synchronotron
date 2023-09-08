@@ -130,7 +130,7 @@ int lineWeight = 2;
 //// FROM HERE: DONT TOUCH -----------------------
 
 // GENERAL
-int stage = 0;                // keeps track of stages
+int stage = 1;                // keeps track of stages
 int maxStage = 6;
 
 // CLUTCHES
@@ -362,7 +362,7 @@ public void nextStage() {
   if(stage+1 <= maxStage) {
     stage++;
   } else {
-    stage = 0;
+    stage = 1;
     if(GPIO_AVAILABLE) GPIO.digitalWrite(switchLedPin, GPIO.LOW);
   }
 }
@@ -384,7 +384,7 @@ public void prevStage() {
     stage = maxStage;
   }
 }
-String version = "1.61";
+String version = "1.62";
 
 String[] boot = {
     "00512 KB OK_",
@@ -1208,7 +1208,7 @@ public void scrollText(String[] data, int interval, int accuracy, int x, int y, 
     // Abort loading if stuck
      println("Aborted Loading by dungeon master");
      startUpLoaded = true;
-     goToStage(0);
+     goToStage(1);
      udp.send("sync_ready", remoteIp, remotePort);
   } else {
     println("Message was not for me :(");

@@ -45,11 +45,13 @@
     // Curves without user
     startUpLoaded = true;
     goToStage(3);
+    popUp(">BRAINALIZER DISCONNECTED", width/4*3, 1250);
   
   } else if(Arrays.equals(data, "sync_stage4".getBytes())) {
     // Curves with user
     startUpLoaded = true;
     goToStage(4);
+    popUp(">BRAINALIZER CONNECTED", width/4*3, 2500);
   
   } else if(Arrays.equals(data, "sync_stage5".getBytes())) {
     // Success!

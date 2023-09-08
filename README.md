@@ -56,7 +56,7 @@ To reset the screens, press the "2x2" button on the remote.
 ## UPDATE
 If adjustments to the scripts are needed, call f.luescher 0787424834 or info@fluescher.ch.
 
-After changes are made, double click the file `update_and_play.sh` on the desktop to pull latest changes made - be sure to deliver an internet connection. During loading, you'll see a new version number.
+After changes are made, double click the file `update_and_play.sh` on the desktop to pull latest changes made - be sure to deliver an internet connection (*disconnect Ethernet cable from back and make a wifi connection*). During loading, you'll see a new version number.
 
 
 

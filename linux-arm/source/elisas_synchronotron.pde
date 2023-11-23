@@ -194,6 +194,8 @@ void draw() {
           // twiddle thumbs until user releases button
           delay(25);
         }
+        // Send the good message to the controlino
+        udp.send("/cue/sync_boot/start", remoteIp, remotePort );
         nextStage();
         delay(500);
       } else {

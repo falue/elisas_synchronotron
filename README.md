@@ -28,6 +28,7 @@ Sending UDP Messages @ `53544`:
 data                   | info
 ---------------------- | --- |
 `sync_ready`           | initially "loaded" stage `3`+`4` (only on startup) |
+`sync_boot`            | is sent when user sflicks the switch on the computer |
 `sync_success`         | both curves where properly aligned by the player |
 `sync_end_of_thoughts` | is sent after the last thought of elisa on stage `6` |
 `sync_died`            | program closed or died |

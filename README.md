@@ -110,12 +110,34 @@ After changes are made, double click the file `update_and_play.sh` on the deskto
     ln -s ~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-armv6hf/libprocessing-io.so lib/
 
 # SETUP A NEW ELISAS SYNC RASPI
+
+## 1. Install raspian
+
+## 2. Get repository
+Get the repo.
+```
+cd /home/esc/Applications/
+mkdir sketchbook && cd sketchbook
+git clone git@github.com:falue/elisas_synchronotron.git
+```
+
+## Confuigure autostart
 Create `nano /home/esc/.config/lxsession/LXDE-pi/autostart`.
 
-In it:
+For arm (raspi 3) write in it:
 ```
 #sh /home/esc/Applications/deploy/startup.sh
 @lxpanel --profile LXDE-pi
 @pcmanfm --desktop --profile LXDE-pi
-sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown.sh
+sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_arm.sh
+```
+Change `play_graceful_shutdown.sh` to either start
+
+
+For aarch64 (raspi 4) write in it:
+```
+#sh /home/esc/Applications/deploy/startup.sh
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_aarch64.sh
 ```

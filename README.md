@@ -6,7 +6,8 @@ By f.Lüscher / fluescher.ch 2023 for Next Level Escape AG.
 
 Run this with [processing.org](http://processing.org/download) or standalone when compiled on mac/win/linux/raspberry pi.
 
-This was intended to run on raspberry pi 3, but may run on raspberry pi 4?
+This was intended to run on raspberry pi 3.
+Raspberry pi 4 does not work (yet) because: [GPIO issues](https://github.com/falue/elisas_synchronotron/issues/1) ([related issue of processing](https://github.com/benfry/processing4/issues/807)) and [autostart issues](https://github.com/falue/elisas_synchronotron/issues/2)
 
 When not on Raspberry Pi with GPIO pins and 4 connected rotary encoders,
 set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`.
@@ -45,7 +46,7 @@ data                             | info
 
 
 ## IP & USER
-The IP address is (maybe?) fixed to ~~`192.168.178.97`~~ `192.168.86.68`.
+The IP address is (maybe?) fixed to `192.168.86.68`.
 
 - username raspberry pi: `esc`
 - password raspberry pi: `synchron`
@@ -53,14 +54,16 @@ The IP address is (maybe?) fixed to ~~`192.168.178.97`~~ `192.168.86.68`.
 
 ## EXIT / RESTART APPLICATION
 Press `ESC` or `right mouse button` to exit the program and see the desktop.
-Double click the file `play.sh` on the desktop to restart application.
+The program asks you to shut down.
+Double click the file `play.sh` on the desktop to play the application.
+Double click the file `update.sh` on the desktop to update the application.
 To see the whole screen on one monitor, press the "SPLITTER" button on the "video wall hdmi" remote inside the computer case.
 To reset the screens, press the "2x2" button on the remote.
 
 ## UPDATE
 If adjustments to the scripts are needed, call f.luescher 0787424834 or info@fluescher.ch.
 
-After changes are made, double click the file `update_and_play.sh` on the desktop to pull latest changes made - be sure to deliver an internet connection (*disconnect Ethernet cable from back and make a wifi connection*). During loading, you'll see a new version number.
+After changes are made, double click the file `update.sh` on the desktop to pull latest changes made - be sure to deliver an internet connection (*disconnect Ethernet cable from back and make a wifi connection*). During loading, you'll see a new version number on the left screen pop up.
 
 
 
@@ -76,47 +79,55 @@ After changes are made, double click the file `update_and_play.sh` on the deskto
 
 
 
-
+---
 
 # NERD STUFF
-## deployment
-1. ***move** the file `libprocessing-io.so` from `/linux-arm/lib` out of the ways before deployment*
-2. Delete folder `/linux-arm/lib` because sometimes Processing does not deploy the newest version
-3. Build with processing 4 on mac (Processing 4 -> File -> export application -> Export). forget java. Build empties the folder `/linux-arm` first.
-4. ***move** the file `libprocessing-io.so` to `/linux-arm/lib` again*. It is also available in the `_tools` folder.
-5. git add, git push on mac
-6. git pull on raspi
+## Deployment
+1. To be safe, delete every `linux-*` deployment folder to make sure everything gets updated.
+2. Build with processing 4 on mac (Processing 4 -> File -> export application -> Export). forget java. Build empties the folder(s) `/linux-*` first.
+3. `git add .`, `git commit`, `git push` on mac
+4. git pull on raspi 3
 
+> *Note*:
+The `play_graceful_shutdown_arm.sh` &`play_graceful_shutdown_aarch64.sh` script auto-links the missing java library file into the compiled `/lib` folder because those files are not delivered by processing, see [here](https://github.com/benfry/processing4/issues/807). 
+> 
+> Each system must use its own:
+> - For arm (rpi3):
+    `~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-armv6hf/libprocessing-io.so`
+> - For aarch64 (rpi4):
+    `ln -s ~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-arm64/libprocessing-io.so`
+>
+> Those files need the be in the exported `linux-*/lib` folders.
+>
+> If those files are not present, the error will be `no processing-io in java.library.path`
 
+# Helpers
 ## logging of boot:
-    tail -f /home/esc/.cache/lxsession/LXDE-pi/run.log
+    tail -f ~/.cache/lxsession/LXDE-pi/run.log
 
 ## start elisas_synchronotron:
-    sudo /home/esc/Applications/sketchbook/elisas_synchronotron/linux-arm/elisas_synchronotron
+    sudo ~/Applications/sketchbook/elisas_synchronotron/linux-arm/elisas_synchronotron
 
 ## change startup things:
-    nano /home/esc/.config/lxsession/LXDE-pi/autostart
+    nano ~/.config/lxsession/LXDE-pi/autostart
 
 # If java is not found or java says "this application was build with a newer version of java":
-
 ## EITHER: Update / install newest java
     sudo apt install openjdk-17-jdk -y
 
 ## OR: Use & make symlink to java that is used by processing editor (not needed if openjdk 17 is installed):
-	`sudo ln -s /home/esc/Applications/processing-4.1.2/java/bin/java /usr/bin`
+	`sudo ln -s ~/Applications/processing-4.1.2/java/bin/java /usr/bin`
 
-# If error is "no processing-io in java.library.path":
-## Use & make symlink to missing native io library (if )
-    `ln -s ~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-armv6hf/libprocessing-io.so lib/`
-or
-    ***copy** the file `libprocessing-io.so` from `_tools/` folder to `linux-arm/lib` **and** `linux-aarch64/lib`.
-
+---
 
 # SETUP A NEW ELISAS SYNCHRONOTRON RASPI
 
 ## Clone image from backup
 - Use [balenaEtcher](https://etcher.balena.io/) to clone `24-04-23 Raspi3mitElisasSynchronisator.img.zip` from archive HDD for raspi 3.
 - Use [balenaEtcher](https://etcher.balena.io/) to clone `24-04-23 Raspi4mitElisasSynchronisator.img.zip` from archive HDD for raspi 4.
+
+> *Note*:
+> Rpi4 is not yet ready because issue [#1](https://github.com/falue/elisas_synchronotron/issues/1) and [#2](https://github.com/falue/elisas_synchronotron/issues/2).
 
 ## For a fresh install
 
@@ -129,49 +140,56 @@ Set device, set Operating system (for raspi 4, choose Raspberry pi OS (64-BIT)),
 user: esc
 pw: synchron
 
-#### disable screen blanking and stuff like that?
-
-#### Other stuff for screen resolution etc?
-
-
 ### 3. Get repository
-Get the repo, it's public so don't worry about nothing.
-
+Get the repo, it's public (now) so don't worry about nothing.
 ```
-cd /home/esc/
+cd ~/.
 mkdir Applications && cd Applications
 mkdir sketchbook && cd sketchbook
 git clone https://github.com/falue/elisas_synchronotron.git
 ```
 
 ### 4. Configure autostart
-- ARM: Copy `scripts/autostart_arm` to `/home/esc/.config/lxsession/LXDE-pi/autostart` (rename to just `autostart`)
-- AARCH64: Copy `scripts/autostart_aarch64` to `/home/esc/.config/lxsession/LXDE-pi/autostart` (rename to just `autostart`)
+- ARM: Copy `scripts/autostart_arm` to `~/.config/lxsession/LXDE-pi/autostart` (rename to just `autostart`)
+- AARCH64: Copy `scripts/autostart_aarch64` to `~/.config/pcmanfm/LXDE-pi/autostart` (rename to just `autostart`) *Note*: Not yet tested
 
-Content of ARM version:
-```
-#sh /home/esc/Applications/deploy/startup.sh
-@lxpanel --profile LXDE-pi
-@pcmanfm --desktop --profile LXDE-pi
-sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_arm.sh
-```
 
-Content of AARCH64 version:
+## 5. Install processing 4.1.2 for raspian
+Get this version: <https://github.com/benfry/processing4/releases?q=4.1.2>
 ```
-#sh /home/esc/Applications/deploy/startup.sh
-@lxpanel --profile LXDE-pi
-@pcmanfm --desktop --profile LXDE-pi
-sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_aarch64.sh
+tar -xvzf processing-4.1.2-linux-arm64.tgz
 ```
+- move to `Applications/processing-4.1.2`
+- Try to start the application and open the main .pde file. Start the animation. Does it run?
 
-## 7. Install java
-`sudo apt install openjdk-17-jdk -y`
+Library problems:
+- No library found for controlP5       -> in library manager look for "**controlP5**"
+- No library found for processing.io   -> in library manager look for "**processing-io**" -> "processing.io" -> "Hardware I/O"
+- No library found for hypermedia.net  -> in library manager look for "**UDP**" by Stephane Cousot (!!)
+
+
+## 5. Install java (maybe?)
+```
+sudo apt install openjdk-17-jdk -y
+```
 
 ## 6. Move fitting files to desktop
-update + play shell script files from /scripts to desktop
+Copy `update.sh` + `play.sh` shell script files from `scripts/` to desktop for easy access.
 
-## Allow files to be executed directly
+## 7. Allow files to be executed directly
 Folder window -> Edit -> Preferences -> check "Dont ask options on launch of executable file"
 
+## 8. Set background image
+Find something fancy.
 
-Enjoy!
+## Enable SSH
+Start Menu -> Raspberry Pi Configuration -> Interfaces -> Check SSH
+Because why not?
+
+## Enable GPIO
+Start Menu -> Raspberry Pi Configuration -> Interfaces -> Check REMOTE GPIO
+(potentially useful)
+
+## 10. Other stuff for screen resolution etc?
+
+***Enjoy!***

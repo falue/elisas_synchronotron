@@ -49,7 +49,7 @@ public class elisas_synchronotron extends PApplet {
 
   IF LIBRARIES MISSING
     No library found for controlP5       -> in library manager look for "controlP5"
-    No library found for processing.io   -> in library manager look for "processing-io"
+    No library found for processing.io   -> in library manager look for "processing-io" -> "processing.io" -> "Hardware I/O"
     No library found for hypermedia.net  -> in library manager look for "UDP" by Stephane Cousot (!!)
 */
 
@@ -1220,7 +1220,7 @@ public void scrollText(String[] data, int interval, int accuracy, int x, int y, 
      // Graceful shutdown
      println("Initiated graceful shutdown by dungeon master");
      // Program closes - 
-     //   literal "graceful shutdown" like this: in /home/esc/.config/lxsession/LXDE-pi/autostart
+     //   literal "graceful shutdown" like this: in ~/.config/lxsession/LXDE-pi/autostart
      //   it will start bash script "play_graceful_shutdown.sh" (instead of the processing sketch directly)
      //   in there it starts the processing sketch first
      //   secondly it calls "shutdown -h now". as the processing sketch is "blocking"

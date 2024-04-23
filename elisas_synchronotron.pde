@@ -27,7 +27,7 @@
 
   IF LIBRARIES MISSING
     No library found for controlP5       -> in library manager look for "controlP5"
-    No library found for processing.io   -> in library manager look for "processing-io"
+    No library found for processing.io   -> in library manager look for "processing-io" -> "processing.io" -> "Hardware I/O"
     No library found for hypermedia.net  -> in library manager look for "UDP" by Stephane Cousot (!!)
 */
 

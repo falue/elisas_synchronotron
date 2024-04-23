@@ -1,4 +1,4 @@
-#sh /home/esc/Applications/deploy/startup.sh
+#sh ~/Applications/deploy/startup.sh
 @lxpanel --profile LXDE-pi
 @pcmanfm --desktop --profile LXDE-pi
-sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_arm.sh
+sudo bash ~/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_arm.sh

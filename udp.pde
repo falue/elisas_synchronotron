@@ -74,7 +74,7 @@
      // Graceful shutdown
      println("Initiated graceful shutdown by dungeon master");
      // Program closes - 
-     //   literal "graceful shutdown" like this: in /home/esc/.config/lxsession/LXDE-pi/autostart
+     //   literal "graceful shutdown" like this: in ~/.config/lxsession/LXDE-pi/autostart
      //   it will start bash script "play_graceful_shutdown.sh" (instead of the processing sketch directly)
      //   in there it starts the processing sketch first
      //   secondly it calls "shutdown -h now". as the processing sketch is "blocking"

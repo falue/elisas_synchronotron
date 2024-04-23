@@ -103,16 +103,19 @@ After changes are made, double click the file `update_and_play.sh` on the deskto
     sudo apt install openjdk-17-jdk -y
 
 ## OR: Use & make symlink to java that is used by processing editor (not needed if openjdk 17 is installed):
-	sudo ln -s /home/esc/Applications/processing-4.1.2/java/bin/java /usr/bin
+	`sudo ln -s /home/esc/Applications/processing-4.1.2/java/bin/java /usr/bin`
 
-# If something with "libprocessing-io not found":
+# If error is "no processing-io in java.library.path":
 ## Use & make symlink to missing native io library (if )
-    ln -s ~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-armv6hf/libprocessing-io.so lib/
+    `ln -s ~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-armv6hf/libprocessing-io.so lib/`
+or
+    ***copy** the file `libprocessing-io.so` from `_tools/` folder to `linux-arm/lib` **and** `linux-aarch64/lib`.
+
 
 # SETUP A NEW ELISAS SYNCHRONOTRON RASPI
 
 ## Clone image from backup
-- Use [balenaEtcher](https://etcher.balena.io/) to clone `23-06-19 Raspi3mitElisasSynchronisator.img.zip` from archive HDD for raspi 3.
+- Use [balenaEtcher](https://etcher.balena.io/) to clone `24-04-23 Raspi3mitElisasSynchronisator.img.zip` from archive HDD for raspi 3.
 - Use [balenaEtcher](https://etcher.balena.io/) to clone `24-04-23 Raspi4mitElisasSynchronisator.img.zip` from archive HDD for raspi 4.
 
 ## For a fresh install

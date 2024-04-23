@@ -6,6 +6,8 @@ By f.Lüscher / fluescher.ch 2023 for Next Level Escape AG.
 
 Run this with [processing.org](http://processing.org/download) or standalone when compiled on mac/win/linux/raspberry pi.
 
+This was intended to run on raspberry pi 3, but may run on raspberry pi 4?
+
 When not on Raspberry Pi with GPIO pins and 4 connected rotary encoders,
 set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`.
 
@@ -39,6 +41,7 @@ data                             | info
 -------------------------------- | --- |
 `sync_stage0`, `sync_stage1` etc | Jump to a specific stage (`0`...`6`). |
 `sync_skipLoading`               | can be used to skip the initial loading process if it takes forever. (Stage `3`+`4` will stay slow) |
+`sync_shutdown`                  | Gracefully shuts down the raspberry pi. Wait a minute to pull the power though. |
 
 
 ## IP & USER
@@ -79,7 +82,7 @@ After changes are made, double click the file `update_and_play.sh` on the deskto
 ## deployment
 1. ***move** the file `libprocessing-io.so` from `/linux-arm/lib` out of the ways before deployment*
 2. Delete folder `/linux-arm/lib` because sometimes Processing does not deploy the newest version
-3. Build with processing 4 on mac. forget java. Build empties the folder `/linux-arm`first.
+3. Build with processing 4 on mac (Processing 4 -> File -> export application -> Export). forget java. Build empties the folder `/linux-arm` first.
 4. ***move** the file `libprocessing-io.so` to `/linux-arm/lib` again*. It is also available in the `_tools` folder.
 5. git add, git push on mac
 6. git pull on raspi
@@ -105,3 +108,14 @@ After changes are made, double click the file `update_and_play.sh` on the deskto
 # If something with "libprocessing-io not found":
 ## Use & make symlink to missing native io library (if )
     ln -s ~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-armv6hf/libprocessing-io.so lib/
+
+# SETUP A NEW ELISAS SYNC RASPI
+Create `nano /home/esc/.config/lxsession/LXDE-pi/autostart`.
+
+In it:
+```
+#sh /home/esc/Applications/deploy/startup.sh
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown.sh
+```

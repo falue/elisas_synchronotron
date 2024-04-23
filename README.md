@@ -134,19 +134,21 @@ pw: synchron
 #### Other stuff for screen resolution etc?
 
 
-### 2. Get repository
+### 3. Get repository
 Get the repo, it's public so don't worry about nothing.
 
 ```
-cd /home/esc/Applications/
+cd /home/esc/
+mkdir Applications && cd Applications
 mkdir sketchbook && cd sketchbook
-git clone git@github.com:falue/elisas_synchronotron.git
+git clone https://github.com/falue/elisas_synchronotron.git
 ```
 
-### Confuigure autostart
-Create (or edit) `nano /home/esc/.config/lxsession/LXDE-pi/autostart`.
+### 4. Configure autostart
+- ARM: Copy `scripts/autostart_arm` to `/home/esc/.config/lxsession/LXDE-pi/autostart` (rename to just `autostart`)
+- AARCH64: Copy `scripts/autostart_aarch64` to `/home/esc/.config/lxsession/LXDE-pi/autostart` (rename to just `autostart`)
 
-For arm (raspi 3) write in it:
+Content of ARM version:
 ```
 #sh /home/esc/Applications/deploy/startup.sh
 @lxpanel --profile LXDE-pi
@@ -154,12 +156,22 @@ For arm (raspi 3) write in it:
 sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_arm.sh
 ```
 
-For aarch64 (raspi 4) write in it:
+Content of AARCH64 version:
 ```
 #sh /home/esc/Applications/deploy/startup.sh
 @lxpanel --profile LXDE-pi
 @pcmanfm --desktop --profile LXDE-pi
 sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_aarch64.sh
 ```
+
+## 7. Install java
+`sudo apt install openjdk-17-jdk -y`
+
+## 6. Move fitting files to desktop
+update + play shell script files from /scripts to desktop
+
+## Allow files to be executed directly
+Folder window -> Edit -> Preferences -> check "Dont ask options on launch of executable file"
+
 
 Enjoy!

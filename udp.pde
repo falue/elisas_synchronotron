@@ -69,6 +69,22 @@
      startUpLoaded = true;
      goToStage(1);
      udp.send("sync_ready", remoteIp, remotePort);
+
+  } else if(Arrays.equals(data, "sync_shutdown".getBytes())) {
+     // Graceful shutdown
+     println("Initiated graceful shutdown by dungeon master");
+     // Program closes - 
+     //   literal "graceful shutdown" like this: in /home/esc/.config/lxsession/LXDE-pi/autostart
+     //   it will start bash script "play_graceful_shutdown.sh" (instead of the processing sketch directly)
+     //   in there it starts the processing sketch first
+     //   secondly it calls "shutdown -h now". as the processing sketch is "blocking"
+     //   it will wait until it terminates to call the shutdown function 
+     //   https://forums.raspberrypi.com/viewtopic.php?t=267389#p1623821
+     exit();
+
+     // or
+     // https://stackoverflow.com/questions/25637/shutting-down-a-computer
+
   } else {
     println("Message was not for me :(");
   }

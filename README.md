@@ -109,20 +109,39 @@ After changes are made, double click the file `update_and_play.sh` on the deskto
 ## Use & make symlink to missing native io library (if )
     ln -s ~/Applications/processing-4.1.2/modes/java/libraries/io/library/linux-armv6hf/libprocessing-io.so lib/
 
-# SETUP A NEW ELISAS SYNC RASPI
+# SETUP A NEW ELISAS SYNCHRONOTRON RASPI
 
-## 1. Install raspian
+## Clone image from backup
+- Use [balenaEtcher](https://etcher.balena.io/) to clone `23-06-19 Raspi3mitElisasSynchronisator.img.zip` from archive HDD for raspi 3.
+- Use [balenaEtcher](https://etcher.balena.io/) to clone `24-04-23 Raspi4mitElisasSynchronisator.img.zip` from archive HDD for raspi 4.
 
-## 2. Get repository
-Get the repo.
+## For a fresh install
+
+### 1. Install raspian on an SD card
+Use [Raspberry pi Imager](https://www.raspberrypi.com/documentation/computers/getting-started.html#raspberry-pi-imager) to flash an >=16GB micro SD card.
+
+Set device, set Operating system (for raspi 4, choose Raspberry pi OS (64-BIT)), set target storage device, click "write".
+
+### 2. Boot raspi first time
+user: esc
+pw: synchron
+
+#### disable screen blanking and stuff like that?
+
+#### Other stuff for screen resolution etc?
+
+
+### 2. Get repository
+Get the repo, it's public so don't worry about nothing.
+
 ```
 cd /home/esc/Applications/
 mkdir sketchbook && cd sketchbook
 git clone git@github.com:falue/elisas_synchronotron.git
 ```
 
-## Confuigure autostart
-Create `nano /home/esc/.config/lxsession/LXDE-pi/autostart`.
+### Confuigure autostart
+Create (or edit) `nano /home/esc/.config/lxsession/LXDE-pi/autostart`.
 
 For arm (raspi 3) write in it:
 ```
@@ -131,8 +150,6 @@ For arm (raspi 3) write in it:
 @pcmanfm --desktop --profile LXDE-pi
 sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_arm.sh
 ```
-Change `play_graceful_shutdown.sh` to either start
-
 
 For aarch64 (raspi 4) write in it:
 ```
@@ -141,3 +158,5 @@ For aarch64 (raspi 4) write in it:
 @pcmanfm --desktop --profile LXDE-pi
 sudo bash /home/esc/Applications/sketchbook/elisas_synchronotron/scripts/play_graceful_shutdown_aarch64.sh
 ```
+
+Enjoy!

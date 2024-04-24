@@ -1,8 +1,18 @@
 # Elisas Strange Case - Processing sketch 
 
-By f.Lüscher / fluescher.ch 2023 for Next Level Escape AG.
+By f.Lüscher / fluescher.ch 2023/24 for Next Level Escape AG.
 
 "AS IS" pi pa po etc.
+
+This is a visual puzzle for an Escape room; using Processing 4 and a raspberry pi 3.
+The Raspberry is connected to two computer monitors.
+A [2x2 video wall controller](https://direkt.jacob.de/produkte/inline-hdmi-videowand-57834i-artnr-4791072.html) splits up the HDMI out to four screen, using only two possible outputs of the controller.
+
+[Processing 4](http://processing.org) is imitating some sort of medical device that measures two different brainwaves, which have to be synchronized to solve the puzzle.
+
+The GPIO pins are used for switches and rotary encoders which control the animation.
+
+UDP messages are sent and received wie ethernet to tie in with the IT system of the escape room.
 
 Run this with [processing.org](http://processing.org/download) or standalone when compiled on mac/win/linux/raspberry pi.
 
@@ -10,10 +20,12 @@ This was intended to run on raspberry pi 3.
 Raspberry pi 4 does not work (yet) because: [GPIO issues](https://github.com/falue/elisas_synchronotron/issues/1) ([related issue of processing](https://github.com/benfry/processing4/issues/807)) and [autostart issues](https://github.com/falue/elisas_synchronotron/issues/2)
 
 When not on Raspberry Pi with GPIO pins and 4 connected rotary encoders,
-set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`.
+set `GPIO_AVAILABLE` to `false` and `DEBUG` to `true`. You can develop on machines now without GPIOs.
 
-Press number keys `0`-`6` or left/right `arrow keys` to change stages manually.
-Press `ESC` or `right mouse button` to go to desktop.
+The processing sketch runs automatically on startup.
+
+Press number keys `0`-`6` or left/right `arrow keys` to change stages of the animation manually.
+Press `ESC` or `right mouse button` to go to desktop and abort the shutdown process by pressing "Yes".
 
 ## STAGES
 | Stage#| Content                        | Interaction                  | At end of stage..      |
@@ -46,8 +58,7 @@ data                             | info
 
 
 ## IP & USER
-The IP address is (maybe?) fixed to `192.168.86.68`.
-
+The IP address is fixed to `192.168.178.97`.
 - username raspberry pi: `esc`
 - password raspberry pi: `synchron`
 
@@ -182,14 +193,34 @@ Folder window -> Edit -> Preferences -> check "Dont ask options on launch of exe
 ## 8. Set background image
 Find something fancy.
 
-## Enable SSH
+## 9. Enable SSH
 Start Menu -> Raspberry Pi Configuration -> Interfaces -> Check SSH
 Because why not?
 
-## Enable GPIO
+## 10. Enable GPIO
 Start Menu -> Raspberry Pi Configuration -> Interfaces -> Check REMOTE GPIO
 (potentially useful)
 
-## 10. Other stuff for screen resolution etc?
+## 11. Add static ip
+Use the [Raspberry Pi OS Guide](https://www.tomshardware.com/how-to/static-ip-raspberry-pi#using-the-raspberry-pi-os-guide-to-set-a-static-ip-3) to set a Static IP or do it [manually](https://www.tomshardware.com/how-to/static-ip-raspberry-pi#how-to-assign-a-static-ip-to-a-raspberry-pi-3):
+
+```
+hostname -I
+```
+```
+grep "nameserver" /etc/resolv.conf
+```
+
+```
+sudo nano /etc/dhcpcd.conf
+```
+Add or change at end of file:
+```
+interface eth0
+static_routers=[hostname]
+static domain_name_servers=[nameserver]
+static ip_address=[STATIC IP ADDRESS YOU WANT]/24
+```
+`interface` can be `eth0` or `wlan0`.
 
 ***Enjoy!***

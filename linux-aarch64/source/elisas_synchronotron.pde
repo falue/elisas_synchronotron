@@ -281,8 +281,8 @@ void draw() {
 
   if(stage == 6) {
     // Elisas thoughts sequence
-    scrollText(thoughtsDe, 2000, 0, 25,25, width/2-50, wHeight-50, true);
-    scrollText(thoughtsEn, 2000, 0, width/2+25,25, width/2-50, wHeight-50, true);
+    scrollText(thoughtsDe, 2160, 0, 25,25, width/2-50, wHeight-50, true);
+    scrollText(thoughtsEn, 2100, 0, width/2+25,25, width/2-50, wHeight-50, true);
   }
 
   if(!startUpLoaded) {

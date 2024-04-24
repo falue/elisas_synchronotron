@@ -44,35 +44,45 @@ String[] boot = {
 };
 
 String[] thoughtsDe = {
-    "Hallo?... Ist da jemand? könnt ihr mich",
-    "hören? Zum Glück seid ihr gekommen...",
+    "Hallo?...",
+    "",
+    "Ist da jemand?",
+    "Könnt ihr mich hören?",
+    "Zum Glück seid ihr gekommen...",
     "Ich brauche eure Hilfe.",
     "Ich habe wirklich grosse Angst.",
     "Ich weiss nicht, was mit mir geschieht,",
-    "aber ich transformiere mich in eine",
-    "Puppe. Ihr müsst in meine Erinnerungen",
+    "aber ich verwandle mich in eine Puppe!",
+    "Ihr müsst in meine Erinnerungen",
     "eintauchen und herausfinden was mit mir",
     "passiert ist.",
-    "",
     "Bitte, ihr seid meine letzte Hoffnung !!",
-    "Aber Vorsicht! Ihr dürft auf keinen Fall...",
-    ""
+    "Aber Vorsicht! Ihr dürft auf keinen",
+    "Fall ┘╪█▐▀╬▐▓╪▀▌▒╬╬█▐▀▒█▌▌▀▓▀╬█▐█▐▀▒█▌▌▀",
+    "▓▒▐█╬▐█▌▌▌▀╬╪█╪┘█╪▓▐█▒▒▀┘▌┘╪█▓╬▀▀┘█▓▒▐╬█",
+    "╪█▒┘╪█▒█┘█▐▀▒█▌▌▀▓▀╬█▐╬╬╪▒▓▓▒▒▓▒▒███▒▀▒▀",
+    "▓▀█▒▒▓▒█▒▒█▐█╬▓▒▒┘▒▌▐█▀▒▒▒▒╬▒╪▒▒▌█▐▐▌███"
 };
 
 String[] thoughtsEn = {
-    "Hello? is anyone there? Can you hear me?",
+    "Hello?",
+    "",
+    "Hello?!",
+    "Can you hear me?",
     "Im so happy you guys are here.",
     "I need your help.",
     "Im really scared. I don't know what is",
     "happening to me but im transforming into",
     "a doll.",
-    "",
-    "You have to travel into my memories and ",
+    "You have to travel into my memories and",
     "find out what happened to me.",
-    "",
     "Please, you are my last hope.",
-    "But careful! you should never...",
-    ""
+    "But careful! You should never ╪█▐▀╬▐▓╪▀▌",
+    "█┘▒▓▌▒┘╪█▐▀╬▀▓┘█▓╪┘█╬█╪▐▓╪▀▌▒╬▀▌███▒▐▌▐╬",
+    "█▌▐█▀▓╪┘▒╪┘▓▌▒╬▒▐█▒╬▀▐▓█╪▓█▌╬╪╬█┘▀█▐┘▌▀█",
+    "▓▒▐█╬▐█▌▌▌▀╬╪█╪┘█╪▓▐█▒▒▀┘▌┘╪█▓╬▀▀┘█▓▒▐╬█",
+    "╪█▒┘╪█▒█┘█▐▀▒█▌▌▀▓▀╬█▐╬╬╪▒▓▓▒▒▓▒▒███▒▀▒▀",
+    "▓▀█▒▒▓▒█▒▒█▐█╬▓▒▒┘▒▌▐█▀▒▒▒▒╬▒╪▒▒▌█▐▐▌███"
 };
 
 /* int[] curve = {
